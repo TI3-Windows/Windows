@@ -35,8 +35,6 @@ namespace Travelore
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ITravelListRepository, TravelListRepository>();
-            services.AddSwaggerDocument();
-            services.AddMvc();
             services.AddControllers();
 
             services.AddOpenApiDocument(c =>
@@ -105,11 +103,24 @@ namespace Travelore
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHttpsRedirection();
+
             app.UseOpenApi();
             app.UseSwaggerUi3();
+
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+
             //dataInitializer.InitializeData();
         }
     }
