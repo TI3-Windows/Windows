@@ -26,5 +26,11 @@ namespace Travelore.Controllers
         {
             return _travelRepo.GetTravelLists();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<TravelList> GetTravelLists(int id)
+        {
+            return _travelRepo.GetTravelListId(id);
+        }
     }
 }
