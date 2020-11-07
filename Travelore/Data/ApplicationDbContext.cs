@@ -15,6 +15,7 @@ namespace Travelore.Data
         public DbSet<TravelList> TravelLists { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +25,7 @@ namespace Travelore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            
         }
     }
 }

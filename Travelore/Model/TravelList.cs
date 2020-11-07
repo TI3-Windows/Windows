@@ -18,11 +18,35 @@ namespace Travelore.Model
         public string Name { get; set; }
         public string Country { get; set; }
         public string Street { get; set; }
-        public int HouseNr { get; set; }
+        public string HouseNr { get; set; }
         public DateTime DateLeave { get; set; }
         public DateTime DateBack { get; set; }
 
-        public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<Task> Tasks { get; set; }
+        public List<Category> Categories { get; set; }
+        public List<Task> Tasks { get; set; }
+        public Itinerary Itinerary {get; set;}
+
+        public TravelList()
+        {
+
+        }
+
+        public TravelList(string name, string country, string street, string houseNr, DateTime dateLeave, DateTime dateBack)
+        {
+            this.Name = name;
+            this.Country = country;
+            this.Street = street;
+            this.HouseNr = houseNr;
+            this.DateLeave = dateLeave;
+            this.DateBack = dateBack;
+            Categories = new List<Category>();
+            Tasks = new List<Task>();
+            Itinerary = new Itinerary();
+        }
+
+        public void AddCategory(Category c)
+        {
+            Categories.Add(c);
+        }
     }
 }

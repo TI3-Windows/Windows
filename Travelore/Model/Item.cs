@@ -15,5 +15,17 @@ namespace Travelore.Model
         public string Name { get; set; }
         public int Amount { get; set; }
         public bool DoneItem { get; set; }
+
+        public Item()
+        {
+
+        }
+
+        public Item(string name, int amount, bool done)
+        {
+            this.Name = name;
+            this.Amount = amount;
+            this.DoneItem = done;
+        }
     }
 }

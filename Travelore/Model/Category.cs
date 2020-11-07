@@ -14,6 +14,23 @@ namespace Travelore.Model
         public string Name { get; set; }
         public bool DoneCat { get; set; }
 
-        public IEnumerable<Item> Items { get; set; }
+        public List<Item> Items { get; set; }
+
+        public Category()
+        {
+            Items = new List<Item>();
+        }
+
+        public Category(string name, bool done)
+        {
+            this.Name = name;
+            this.DoneCat = done;
+            Items = new List<Item>();
+        }
+
+        public void AddItem(Item i)
+        {
+            Items.Add(i);
+        }
     }
 }
