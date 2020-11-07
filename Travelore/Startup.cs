@@ -110,7 +110,7 @@ namespace Travelore
             app.UseRouting();
 
             app.UseAuthorization();
-            dataInitializer.InitializeData();
+            //dataInitializer.InitializeData();
         }
     }
 }

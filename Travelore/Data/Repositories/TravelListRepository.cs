@@ -30,12 +30,12 @@ namespace Travelore.Data.Repositories
 
         public TravelList GetTravelListId(int id)
         {
-            return _travelLists.Include(tl => tl.Categories).Include(tl => tl.Tasks).SingleOrDefault(t => t.Id == id);
+            return _travelLists.Include(tl => tl.Categories).ThenInclude(c => c.Items).Include(tl => tl.Tasks).Include(tl => tl.Itinerary).ThenInclude(i => i.Destinations).SingleOrDefault(t => t.Id == id);
         }
 
         public IEnumerable<TravelList> GetTravelLists()
         {
-            return _travelLists;
+            return _travelLists.Include(tl => tl.Categories).ThenInclude(c => c.Items).Include(tl => tl.Tasks).Include(tl => tl.Itinerary).ThenInclude(i => i.Destinations);
         }
 
         public void SaveChanges()
