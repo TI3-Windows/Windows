@@ -31,22 +31,22 @@ namespace Travelore.Data.Repositories
 
         public Task GetByTaskId(int id)
         {
-            throw new NotImplementedException();
+            return _tasks.SingleOrDefault(t => t.Id == id);
         }
 
         public IEnumerable<Task> GetTasks()
         {
-            throw new NotImplementedException();
+            return _tasks;
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public void Update(Task task)
         {
-            throw new NotImplementedException();
+            _tasks.Update(task);
         }
     }
 }

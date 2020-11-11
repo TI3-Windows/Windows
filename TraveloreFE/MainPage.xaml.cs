@@ -1,4 +1,5 @@
-﻿using System;
+﻿using TraveloreFE.View;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace TraveloreFE
         public MainPage()
         {
             this.InitializeComponent();
+            mainContent.Navigate(typeof(CategoriesView));
         }
 
         private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -32,6 +34,10 @@ namespace TraveloreFE
             if(args.InvokedItem.Equals("Categories"))
             {
                 mainContent.Navigate(typeof(CategoriesView));
+            }
+            if(args.InvokedItem.Equals("Tasks"))
+            {
+                mainContent.Navigate(typeof(TasksView));
             }
         }
     }

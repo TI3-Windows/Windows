@@ -24,7 +24,7 @@ namespace Travelore.Model
 
         public List<Category> Categories { get; set; }
         public List<Task> Tasks { get; set; }
-        public Itinerary Itinerary {get; set;}
+        public List<Destination> Itinerary {get; set;}
 
         public TravelList()
         {
@@ -41,12 +41,22 @@ namespace Travelore.Model
             this.DateBack = dateBack;
             Categories = new List<Category>();
             Tasks = new List<Task>();
-            Itinerary = new Itinerary();
+            Itinerary = new List<Destination>();
         }
 
         public void AddCategory(Category c)
         {
             Categories.Add(c);
+        }
+
+        public void AddDestination(Destination des)
+        {
+            Itinerary.Add(des);
+        }
+
+        public void AddTask(Task t)
+        {
+            Tasks.Add(t);
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Travelore.Data.Repositories
             return _travelLists
                 .Include(tl => tl.Categories).ThenInclude(c => c.Items)
                 .Include(tl => tl.Tasks)
+                .Include(tl => tl.Itinerary)
                 .SingleOrDefault(t => t.Id == id);
         }
 
@@ -41,6 +42,7 @@ namespace Travelore.Data.Repositories
             return _travelLists
                 .Include(tl => tl.Categories).ThenInclude(c => c.Items)
                 .Include(tl => tl.Tasks)
+                .Include(tl => tl.Itinerary)
                 .ToList();        
         }
 

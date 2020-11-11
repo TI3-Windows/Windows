@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Travelore.Model;
+using Task = Travelore.Model.Task;
 
 namespace Travelore.Data
 {
@@ -183,6 +184,28 @@ namespace Travelore.Data
                     _context.Items.Add(c);
                     c4.AddItem(c);
                 }
+                _context.SaveChanges();
+
+                List<Task> tasks = new List<Task>();
+                Task ta1 = new Task("Public relations","Talk with parents who have questions or concerns",DateTime.Now.AddDays(3),false);
+                Task ta2 = new Task("Writing","Write drafts of letters and memos",DateTime.Now.AddDays(4),false);
+                Task ta3 = new Task("Design","Create forms for school and departments",DateTime.Now.AddDays(5),false);
+                Task ta4 = new Task("Clerical","Organize and maintain public information office files",DateTime.Now.AddDays(6),false);
+                tasks.Add(ta1);
+                tasks.Add(ta2);
+                tasks.Add(ta3);
+                tasks.Add(ta4);
+
+                foreach (Task ta in tasks)
+                {
+                    _context.Tasks.Add(ta);
+                }
+                _context.SaveChanges();
+
+                t1.AddTask(ta1);
+                t1.AddTask(ta2);
+                t1.AddTask(ta3);
+                t1.AddTask(ta4);
                 _context.SaveChanges();
             }
         }

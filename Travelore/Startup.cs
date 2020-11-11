@@ -124,7 +124,7 @@ namespace Travelore
             });
 
 
-            //dataInitializer.InitializeData();
+            dataInitializer.InitializeData();
         }
     }
 }

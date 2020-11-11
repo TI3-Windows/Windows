@@ -31,9 +31,9 @@ namespace Travelore.Data
                 .WithOne()
                 .HasForeignKey("TravelListId");
             builder.Entity<TravelList>()
-                .HasOne(tl => tl.Itinerary)
-                .WithOne(i => i.TravelList)
-                .HasForeignKey<Itinerary>("TravelListId");
+                .HasMany(tl => tl.Itinerary)
+                .WithOne()
+                .HasForeignKey("TravelListId");
             builder.Entity<TravelList>()
                 .HasMany(tl => tl.Tasks)
                 .WithOne()
@@ -96,16 +96,14 @@ namespace Travelore.Data
             builder.Entity<Task>()
                 .Property(i => i.Description)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(200);
+            builder.Entity<Task>()
+                .Property(i => i.EndDate)
+                .IsRequired();
             builder.Entity<Task>()
                 .Property(i => i.DoneTask)
                 .IsRequired()
                 .HasMaxLength(50);
-
-            builder.Entity<Itinerary>()
-                .HasMany(i => i.Destinations)
-                .WithOne()
-                .HasForeignKey("ItineraryId");
 
             builder.Entity<Destination>()
                 .Property(d => d.Name)
