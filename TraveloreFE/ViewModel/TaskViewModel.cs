@@ -2,10 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using TraveloreFE.Model;
+using Windows.Web.Http;
+using HttpClient = Windows.Web.Http.HttpClient;
 
 namespace TraveloreFE.ViewModel
 {
@@ -27,6 +30,27 @@ namespace TraveloreFE.ViewModel
             {
                 Tasks.Add(t);
             }
+        }
+
+        public async void AddTask(string description, DateTime dateTime)
+        {
+            try
+            {
+                string url = "http://localhost:5001/api/Task";
+                Task t = new Task(description, false, dateTime);
+                var json = JsonConvert.SerializeObject(t);
+                var stringContent = new HttpStringContent(json);
+                HttpClient httpClient = new HttpClient();
+                var response = await httpClient.PostAsync(new Uri(url), stringContent);
+                response.EnsureSuccessStatusCode();
+                var httpResponseBody = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(httpResponseBody);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            
         }
     }
 }

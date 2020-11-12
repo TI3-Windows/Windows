@@ -90,13 +90,9 @@ namespace Travelore.Data
                 .HasMaxLength(50);
 
             builder.Entity<Task>()
-                .Property(i => i.Name)
-                .IsRequired()
-                .HasMaxLength(50);
-            builder.Entity<Task>()
                 .Property(i => i.Description)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(400);
             builder.Entity<Task>()
                 .Property(i => i.EndDate)
                 .IsRequired();

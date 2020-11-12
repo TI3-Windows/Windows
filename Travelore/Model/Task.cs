@@ -8,13 +8,11 @@ namespace Travelore.Model
 {
     public class Task
     {
-        private string _name;
         private string _description;
         private bool _doneTask;
         private DateTime _endDate;
 
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
         public DateTime EndDate { get; set; }
         public bool DoneTask { get; set; }
@@ -24,9 +22,8 @@ namespace Travelore.Model
 
         }
 
-        public Task(string name, string description, DateTime endDate, bool done)
+        public Task(string description, DateTime endDate, bool done)
         {
-            this.Name = name;
             this.Description = description;
             this.EndDate = endDate;
             this.DoneTask = done;

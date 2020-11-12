@@ -4,19 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TraveloreFE.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewmodel:TaskViewModel x:Name="vm"/>
+        <viewmodel:TaskViewModel x:Name="vmT"/>
     </Page.DataContext>
     <ScrollViewer>
         <StackPanel>
-            <ListView x:Name="lvTasks" ItemsSource="{x:Bind vm.Tasks}">
+            <ListView x:Name="lvTasks" ItemsSource="{x:Bind vmT.Tasks}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
                         <StackPanel>
-                            <TextBlock FontSize="48" Text="{x:Bind Name}"/>
                             <TextBlock FontSize="24" Text="{x:Bind Description}"/>
                             <TextBlock FontSize="24" Text="{x:Bind EndDate}"/>
                             <TextBlock FontSize="24" Text="{x:Bind DoneTask}"/>
@@ -24,6 +24,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
+                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
+                <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"/>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>

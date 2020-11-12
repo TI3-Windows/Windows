@@ -40,7 +40,6 @@ namespace Travelore.Controllers
         {
             Task task = new Task()
             {
-                Name = t.Name,
                 Description = t.Description,
                 EndDate = t.EndDate,
                 DoneTask = false,

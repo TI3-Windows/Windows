@@ -187,10 +187,10 @@ namespace Travelore.Data
                 _context.SaveChanges();
 
                 List<Task> tasks = new List<Task>();
-                Task ta1 = new Task("Public relations","Talk with parents who have questions or concerns",DateTime.Now.AddDays(3),false);
-                Task ta2 = new Task("Writing","Write drafts of letters and memos",DateTime.Now.AddDays(4),false);
-                Task ta3 = new Task("Design","Create forms for school and departments",DateTime.Now.AddDays(5),false);
-                Task ta4 = new Task("Clerical","Organize and maintain public information office files",DateTime.Now.AddDays(6),false);
+                Task ta1 = new Task("Talk with parents who have questions or concerns",DateTime.Now.AddDays(3),false);
+                Task ta2 = new Task("Write drafts of letters and memos",DateTime.Now.AddDays(4),false);
+                Task ta3 = new Task("Create forms for school and departments",DateTime.Now.AddDays(5),false);
+                Task ta4 = new Task("Organize and maintain public information office files",DateTime.Now.AddDays(6),false);
                 tasks.Add(ta1);
                 tasks.Add(ta2);
                 tasks.Add(ta3);
