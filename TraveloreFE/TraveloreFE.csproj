@@ -128,6 +128,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\Commands\AddTaskCommand.cs" />
+    <Compile Include="ViewModel\Commands\DeleteTaskCommand.cs" />
     <Compile Include="ViewModel\TaskViewModel.cs" />
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>

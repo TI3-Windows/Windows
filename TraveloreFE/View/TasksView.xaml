@@ -13,21 +13,29 @@
     </Page.DataContext>
     <ScrollViewer>
         <StackPanel>
-            <ListView x:Name="lvTasks" ItemsSource="{x:Bind vmT.Tasks}">
+            <ListView x:Name="lvTasks" ItemsSource="{x:Bind vmT.Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
                         <StackPanel>
-                            <TextBlock FontSize="24" Text="{x:Bind Description}"/>
-                            <TextBlock FontSize="24" Text="{x:Bind EndDate}"/>
-                            <TextBlock FontSize="24" Text="{x:Bind DoneTask}"/>
+                            <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
+                            <TextBlock FontSize="11" Text="{x:Bind Description}"/>
+                            <TextBlock FontSize="10" Text="{x:Bind EndDate}"/>
+                            <TextBlock FontSize="8" Text="{x:Bind DoneTask}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <MenuFlyout x:Name="allContactsMenuFlyout">
+                        <MenuFlyout.Items>
+                            <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>
+                        </MenuFlyout.Items>
+                    </MenuFlyout>
+                </ListView.Resources>
             </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
                 <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
-                <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"/>
+                <Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

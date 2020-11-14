@@ -1,28 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TraveloreFE.Model
 {
-    public class Task
-    {
+    public class Task : INotifyPropertyChanged
+    { 
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         private string _description;
-        private DateTime _endDate;
+        private DateTime? _endDate;
         private bool _doneTask;
 
         public int Id { get; set; }
-        public string Description { get; set; }
-        public DateTime EndDate { get; set; }
-        public bool DoneTask { get; set; }
+        public string Description {
+            get {
+                return _description;
+            }
+            set {
+                _description = value;
+                RaisePropertyChanged("Description");
+            } 
+        }
+        public DateTime? EndDate {
+            get {
+                return _endDate;
+            }
+            set {
+                _endDate = value;
+                RaisePropertyChanged("EndDate");
+            } 
+        }
+        public bool DoneTask {
+            get {
+                return _doneTask;
+            }
+            set {
+                _doneTask = value;
+                RaisePropertyChanged("DoneTask");
+            } 
+        }
 
-
-        public Task(string description, bool doneTask, DateTime endDate)
+        protected void RaisePropertyChanged(string name)
         {
-            Description = description;
-            DoneTask = doneTask;
-            EndDate = endDate;
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

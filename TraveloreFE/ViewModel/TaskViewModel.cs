@@ -6,19 +6,30 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using TraveloreFE.Model;
+using TraveloreFE.View;
+using TraveloreFE.ViewModel.Commands;
 using Windows.Web.Http;
 using HttpClient = Windows.Web.Http.HttpClient;
+using Task = TraveloreFE.Model.Task;
 
 namespace TraveloreFE.ViewModel
 {
     public class TaskViewModel
     {
         public ObservableCollection<Task> Tasks { get; set; }
+
+        public ICommand AddTaskCommand { get; set; }
+        public ICommand DeleteTaskCommand { get; set; }
+
         public TaskViewModel()
         {
             Tasks = new ObservableCollection<Task>();
             loadTasks();
+            AddTaskCommand = new AddTaskCommand(this);
+            DeleteTaskCommand = new DeleteTaskCommand(this);
         }
 
         private async void loadTasks()
@@ -32,25 +43,52 @@ namespace TraveloreFE.ViewModel
             }
         }
 
-        public async void AddTask(string description, DateTime dateTime)
+        // Add a Task WITHOUT Parameters
+        public async System.Threading.Tasks.Task AddTask()
         {
-            try
+            var task = new Task() { Description = "testDescription", DoneTask = false, EndDate = DateTime.Now };
+            var taskJson = JsonConvert.SerializeObject(task);
+
+            HttpClient httpClient = new HttpClient();
+            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Task"),
+                new HttpStringContent(taskJson,Windows.Storage.Streams.UnicodeEncoding.Utf8,"application/json"));
+            if (res.IsSuccessStatusCode)
             {
-                string url = "http://localhost:5001/api/Task";
-                Task t = new Task(description, false, dateTime);
-                var json = JsonConvert.SerializeObject(t);
-                var stringContent = new HttpStringContent(json);
-                HttpClient httpClient = new HttpClient();
-                var response = await httpClient.PostAsync(new Uri(url), stringContent);
-                response.EnsureSuccessStatusCode();
-                var httpResponseBody = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(httpResponseBody);
+                Tasks.Add(JsonConvert.DeserializeObject<Task>(res.Content.ToString()));
             }
-            catch (Exception ex)
+        }
+
+        // Add A Task WITH Parameters
+        public async System.Threading.Tasks.Task AddNewTask(string description, DateTime? dateTime)
+        {
+            var task = new Task() { Description = description , DoneTask = false, EndDate = dateTime };
+            var taskJson = JsonConvert.SerializeObject(task);
+
+            HttpClient httpClient = new HttpClient();
+            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Task"),
+                new HttpStringContent(taskJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if (res.IsSuccessStatusCode)
             {
-                Debug.WriteLine(ex);
+                Tasks.Add(JsonConvert.DeserializeObject<Task>(res.Content.ToString()));
             }
-            
+        }
+
+        // Delete A Task
+        public async System.Threading.Tasks.Task DeleteSelectedTask(int id)
+        {
+            var taskId = id;
+            var taskIdJson = JsonConvert.SerializeObject(taskId);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Task/{id}";
+            var res = await httpClient.DeleteAsync(new Uri(url));
+            if(res.IsSuccessStatusCode)
+            {
+                var deletedTask = Tasks.SingleOrDefault((t) => t.Id == id);
+                if(deletedTask != null)
+                {
+                    Tasks.Remove(deletedTask);
+                }
+            }
         }
     }
 }
