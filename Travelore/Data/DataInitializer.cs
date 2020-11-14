@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Travelore.Model;
 using Task = Travelore.Model.Task;
@@ -10,17 +12,27 @@ namespace Travelore.Data
     public class DataInitializer
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public DataInitializer(ApplicationDbContext dbContext)
+        public DataInitializer(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
         {
             _context = dbContext;
+            _userManager = userManager;
         }
 
-        public void InitializeData()
+        public async System.Threading.Tasks.Task InitializeData()
         {
             _context.Database.EnsureDeleted();
             if (_context.Database.EnsureCreated())
             {
+                Customer customer1 = new Customer { Email = "customer1@hogent.be", FirstName = "Robbe", LastName = "Van Looy" };
+                _context.Customers.Add(customer1);
+                await CreateUser(customer1.Email, "P@ssword1111");
+                Customer customer2 = new Customer { Email = "customer2@hogent.be", FirstName = "Flor", LastName = "Jacob" };
+                _context.Customers.Add(customer2);
+                await CreateUser(customer2.Email, "P@ssword111");
+                _context.SaveChanges();
+
                 List<TravelList> travelLists = new List<TravelList>();
                 TravelList t1 = new TravelList("Summer 2021", "Buthan", "Florstraat", "33A", DateTime.Now.AddDays(100), DateTime.Now.AddDays(110));
                 TravelList t2 = new TravelList("#SummerIsLit", "Australië", "Blipblop", "1", DateTime.Now.AddDays(33), DateTime.Now.AddDays(66));
@@ -32,6 +44,11 @@ namespace Travelore.Data
 
                 foreach (TravelList t in travelLists)
                     _context.TravelLists.Add(t);
+                _context.SaveChanges();
+
+                customer1.AddTravelLists(t1);
+                customer1.AddTravelLists(t2);
+                customer2.AddTravelLists(t3);
                 _context.SaveChanges();
 
                 List<Category> categories = new List<Category>();
@@ -208,6 +225,13 @@ namespace Travelore.Data
                 t1.AddTask(ta4);
                 _context.SaveChanges();
             }
+        }
+
+        private async System.Threading.Tasks.Task CreateUser(string email, string password)
+        {
+            var user = new IdentityUser { UserName = email, Email = email };
+            await _userManager.CreateAsync(user, password);
+            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "customer"));
         }
     }
 }

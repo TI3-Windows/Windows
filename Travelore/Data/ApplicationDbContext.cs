@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using Task = Travelore.Model.Task;
 
 namespace Travelore.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { }
 
@@ -16,6 +17,7 @@ namespace Travelore.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -124,6 +126,19 @@ namespace Travelore.Data
                 .Property(d => d.VisitTime)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder.Entity<Customer>()
+                .Property(c => c.LastName)
+                .IsRequired()
+                .HasMaxLength(50);
+            builder.Entity<Customer>()
+                .Property(c => c.FirstName)
+                .IsRequired()
+                .HasMaxLength(50);
+            builder.Entity<Customer>()
+                .Property(c => c.Email)
+                .IsRequired()
+                .HasMaxLength(100);
         }
     }
 }

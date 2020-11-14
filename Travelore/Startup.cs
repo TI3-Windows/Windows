@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using Travelore.Data;
 using Travelore.Data.Repositories;
@@ -33,12 +35,18 @@ namespace Travelore
 
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Customer", policy => policy.RequireClaim(ClaimTypes.Role, "customer"));
+            });
 
             services.AddScoped<DataInitializer>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ITravelListRepository, TravelListRepository>();
-            
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddOpenApiDocument(c =>
             {
@@ -46,30 +54,30 @@ namespace Travelore
                 c.Title = "Travelore API";
                 c.Version = "v1";
                 c.Description = "The Travelore API documentation description.";
-                c.DocumentProcessors.Add(new SecurityDefinitionAppender("JWT Token", new OpenApiSecurityScheme
+                c.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
                 {
                     Type = OpenApiSecuritySchemeType.ApiKey,
                     Name = "Authorization",
                     In = OpenApiSecurityApiKeyLocation.Header,
-                    Description = "Copy 'Bearer' + valid JWT token into field"
-                }));
-                c.OperationProcessors.Add(new OperationSecurityScopeProcessor("JWT Token"));
-
-                //services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true).AddEntityFrameworkStores<ApplicationDbContext>();
+                    Description = "Type into the textbox: Bearer {your JWT token}."
+                });
+                c.OperationProcessors.Add(
+                    new AspNetCoreOperationSecurityScopeProcessor("JWT"));
 
                 services.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(x =>
                 {
                     x.RequireHttpsMetadata = false;
                     x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
+                    x.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         RequireExpirationTime = true //Ensure token hasn't expired
@@ -124,7 +132,7 @@ namespace Travelore
             });
 
 
-            dataInitializer.InitializeData();
+            dataInitializer.InitializeData().Wait();
         }
     }
 }
