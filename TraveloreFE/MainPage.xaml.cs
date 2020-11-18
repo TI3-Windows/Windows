@@ -39,6 +39,10 @@ namespace TraveloreFE
             {
                 mainContent.Navigate(typeof(TasksView));
             }
+            if(args.InvokedItem.Equals("Map"))
+            {
+                mainContent.Navigate(typeof(MapRoute));
+            }
         }
     }
 }

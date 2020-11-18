@@ -13,6 +13,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Categories" Icon="Home"></NavigationViewItem>
                 <NavigationViewItem Content="Tasks" Icon="List"></NavigationViewItem>
+                <NavigationViewItem Content="Map" Icon="World"></NavigationViewItem>
             </NavigationView.MenuItems>
 
             <Frame x:Name="mainContent"></Frame>
