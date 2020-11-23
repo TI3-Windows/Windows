@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="TraveloreFE.View.TravellistsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TraveloreFE.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewmodel:TravellistViewModel x:Name="vmTL"/>
+    </Page.DataContext>
+    <ScrollViewer>
+        <StackPanel>
+            <ListView x:Name="lvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="lvTravellist_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Travellist">
+                        <StackPanel>
+                            <TextBlock FontSize="11" Text="{x:Bind Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <MenuFlyout x:Name="allContactsMenuFlyout">
+                        <MenuFlyout.Items>
+                            <!--<MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>-->
+                        </MenuFlyout.Items>
+                    </MenuFlyout>
+                </ListView.Resources>
+            </ListView>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
+                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
+                --><!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>--><!--
+            </StackPanel>-->
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+

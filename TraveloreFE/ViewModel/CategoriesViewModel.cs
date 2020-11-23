@@ -13,17 +13,23 @@ namespace TraveloreFE.ViewModel
     public class CategoriesViewModel
     {
         public ObservableCollection<Category> Categories { get; set; }
-        public CategoriesViewModel()
+        public Travellist Travellist { get; set; }
+        public CategoriesViewModel(Travellist tl)
         {
+            Travellist = tl;
             Categories = new ObservableCollection<Category>();
             loadCategories();
         }
 
         private async void loadCategories()
         {
-            HttpClient httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Category"));
-            var categoryList = JsonConvert.DeserializeObject<IList<Category>>(json);
+            //HttpClient httpClient = new HttpClient();
+            //var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Category"));
+            //var categoryList = JsonConvert.DeserializeObject<IList<Category>>(json);
+
+
+            var categoryList = Travellist.Categories;
+
             foreach (var c in categoryList)
             {
                 Categories.Add(c);

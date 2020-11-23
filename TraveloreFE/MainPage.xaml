@@ -8,12 +8,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    
     <Grid>
-        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked">
+        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" BackRequested="navView_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Categories" Icon="Home"></NavigationViewItem>
                 <NavigationViewItem Content="Tasks" Icon="List"></NavigationViewItem>
                 <NavigationViewItem Content="Map" Icon="World"></NavigationViewItem>
+                <NavigationViewItem Content="Travellist" Icon="List"></NavigationViewItem>
             </NavigationView.MenuItems>
 
             <Frame x:Name="mainContent"></Frame>

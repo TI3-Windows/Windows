@@ -8,7 +8,37 @@
     xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.DataContext>
+    <ScrollViewer>
+        <StackPanel>
+            <ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
+                <!--<ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged">-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
+                            <TextBlock FontSize="11" Text="{Binding Description}"/>
+                            <TextBlock FontSize="10" Text="{Binding EndDate}"/>
+                            <TextBlock FontSize="8" Text="{Binding DoneTask}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Resources>
+                    <MenuFlyout x:Name="allContactsMenuFlyout">
+                        <MenuFlyout.Items>
+                            <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>
+                        </MenuFlyout.Items>
+                    </MenuFlyout>
+                </ListView.Resources>
+            </ListView>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
+                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
+                <Button x:Name="btnAddTask" Content="Add task" Command="{Binding AddTaskCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+    
+    <!--<Page.DataContext>
         <viewmodel:TaskViewModel x:Name="vmT"/>
     </Page.DataContext>
     <ScrollViewer>
@@ -17,7 +47,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
                         <StackPanel>
-                            <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
+                            --><!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>--><!--
                             <TextBlock FontSize="11" Text="{x:Bind Description}"/>
                             <TextBlock FontSize="10" Text="{x:Bind EndDate}"/>
                             <TextBlock FontSize="8" Text="{x:Bind DoneTask}"/>
@@ -38,5 +68,5 @@
                 <Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>
             </StackPanel>
         </StackPanel>
-    </ScrollViewer>
+    </ScrollViewer>-->
 </Page>

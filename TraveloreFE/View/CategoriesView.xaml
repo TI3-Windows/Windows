@@ -8,8 +8,24 @@
     xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.DataContext>
-        <viewmodel:CategoriesViewModel x:Name="vm"/>
+    
+    <ScrollViewer>
+        <StackPanel>
+            <ListView ItemsSource="{Binding Categories}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding DoneCat}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
+    
+    <!--<Page.DataContext>
+        <viewmodel:CategorieViewModel x:Name="vm"/>
     </Page.DataContext>
     <ScrollViewer>
         <StackPanel>
@@ -24,5 +40,6 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-    </ScrollViewer>
+    </ScrollViewer>-->
+
 </Page>

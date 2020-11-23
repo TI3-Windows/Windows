@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.ServiceModel.Channels;
 using TraveloreFE.Model;
-using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,18 +21,22 @@ namespace TraveloreFE.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CategoriesView : Page
+    public sealed partial class TravellistsView : Page
     {
-        public Travellist Travellist { get; set; }
-        public CategoriesView()
+        public TravellistsView()
         {
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private async void lvTravellist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Travellist = (Travellist)e.Parameter;
-            DataContext = new CategoriesViewModel(Travellist);
+            ListView lv = (ListView)sender;
+            Travellist selectedTl = (Travellist)lvTravellists.SelectedItem;
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(MainPage), selectedTl);
+
         }
+
+
     }
 }

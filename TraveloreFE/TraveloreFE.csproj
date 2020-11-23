@@ -123,13 +123,16 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Destination.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\Travellist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\Commands\AddTaskCommand.cs" />
     <Compile Include="ViewModel\Commands\DeleteTaskCommand.cs" />
     <Compile Include="ViewModel\TaskViewModel.cs" />
+    <Compile Include="ViewModel\TravellistViewModel.cs" />
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,9 @@
     </Compile>
     <Compile Include="View\TasksView.xaml.cs">
       <DependentUpon>TasksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TravellistsView.xaml.cs">
+      <DependentUpon>TravellistsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TravellistsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

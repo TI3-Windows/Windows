@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TraveloreFE.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -23,26 +24,39 @@ namespace TraveloreFE
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public Travellist Travellist { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
-            mainContent.Navigate(typeof(CategoriesView));
+            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Travellist = (Travellist)e.Parameter;
+            mainContent.Navigate(typeof(CategoriesView), Travellist);
         }
 
         private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         { 
             if(args.InvokedItem.Equals("Categories"))
             {
-                mainContent.Navigate(typeof(CategoriesView));
+                mainContent.Navigate(typeof(CategoriesView), Travellist);
             }
             if(args.InvokedItem.Equals("Tasks"))
             {
-                mainContent.Navigate(typeof(TasksView));
+                mainContent.Navigate(typeof(TasksView), Travellist);
             }
             if(args.InvokedItem.Equals("Map"))
             {
                 mainContent.Navigate(typeof(MapRoute));
             }
+            if (args.InvokedItem.Equals("Travellist"))
+            {
+                mainContent.Navigate(typeof(TravellistsView));
+            }
         }
+
     }
 }

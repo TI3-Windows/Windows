@@ -27,11 +27,19 @@ namespace TraveloreFE.View
     /// </summary>
     public sealed partial class TasksView : Page
     {
+
         private Task selectedTask;
+        public Travellist Travellist { get; set; }
 
         public TasksView()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Travellist = (Travellist)e.Parameter;
+            DataContext = new TaskViewModel(Travellist);
         }
 
         private async void lvTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,18 +50,18 @@ namespace TraveloreFE.View
             await md.ShowAsync();
         }
 
-        private void btnAddTask_Click(object sender, RoutedEventArgs e)
-        {
-            if (Description.Text != null)
-            {
-                var description = Description.Text;
-                var dateTime = DateTime.Now;
-                if (endDateDatePicker.Date != null)
-                {
-                    dateTime = endDateDatePicker.Date.Value.DateTime;
-                }
-            }
-        }
+        //private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (Description.Text != null)
+        //    {
+        //        var description = Description.Text;
+        //        var dateTime = DateTime.Now;
+        //        if (endDateDatePicker.Date != null)
+        //        {
+        //            dateTime = endDateDatePicker.Date.Value.DateTime;
+        //        }
+        //    }
+        //}
 
         private void lvTasks_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
@@ -65,7 +73,7 @@ namespace TraveloreFE.View
 
         private async void Remove_Click(object sender, RoutedEventArgs e)
         {
-            if(selectedTask != null)
+            if (selectedTask != null)
             {
                 MessageDialog md = new MessageDialog($"The task with id {selectedTask.Id} will be removed. Functionality still in progress.");
                 await md.ShowAsync();

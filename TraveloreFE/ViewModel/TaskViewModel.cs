@@ -20,12 +20,14 @@ namespace TraveloreFE.ViewModel
     public class TaskViewModel
     {
         public ObservableCollection<Task> Tasks { get; set; }
+        public Travellist Travellist { get; set; }
 
         public ICommand AddTaskCommand { get; set; }
         public ICommand DeleteTaskCommand { get; set; }
 
-        public TaskViewModel()
+        public TaskViewModel(Travellist tl)
         {
+            Travellist = tl;
             Tasks = new ObservableCollection<Task>();
             loadTasks();
             AddTaskCommand = new AddTaskCommand(this);
@@ -34,9 +36,12 @@ namespace TraveloreFE.ViewModel
 
         private async void loadTasks()
         {
-            HttpClient httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Task"));
-            var taskList = JsonConvert.DeserializeObject<IList<Task>>(json);
+            //HttpClient httpClient = new HttpClient();
+            //var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Task"));
+            //var taskList = JsonConvert.DeserializeObject<IList<Task>>(json);
+
+            var taskList = Travellist.Tasks;
+
             foreach(var t in taskList)
             {
                 Tasks.Add(t);
