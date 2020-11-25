@@ -25,7 +25,7 @@ namespace TraveloreFE.ViewModel.Commands
         public async void Execute(object task)
         {
             
-            //await _viewModel.DeleteSelectedTask();
+            await _viewModel.DeleteSelectedTask(task.GetHashCode());
         }
     }
 }

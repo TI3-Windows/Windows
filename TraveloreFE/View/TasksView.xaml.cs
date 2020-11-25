@@ -30,6 +30,7 @@ namespace TraveloreFE.View
 
         private Task selectedTask;
         public Travellist Travellist { get; set; }
+        public TaskViewModel tvm;
 
         public TasksView()
         {
@@ -40,28 +41,38 @@ namespace TraveloreFE.View
         {
             Travellist = (Travellist)e.Parameter;
             DataContext = new TaskViewModel(Travellist);
+            tvm = (TaskViewModel)DataContext;
         }
 
-        private async void lvTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lvTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListView lv = (ListView)sender;
             Task selectedTask = (Task)lvTasks.SelectedItem;
-            MessageDialog md = new MessageDialog($"Selected: {selectedTask.Description}");
-            await md.ShowAsync();
+            //MessageDialog md = new MessageDialog($"Selected: {selectedTask.Description}");
+            //await md.ShowAsync();
         }
 
-        //private void btnAddTask_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (Description.Text != null)
-        //    {
-        //        var description = Description.Text;
-        //        var dateTime = DateTime.Now;
-        //        if (endDateDatePicker.Date != null)
-        //        {
-        //            dateTime = endDateDatePicker.Date.Value.DateTime;
-        //        }
-        //    }
-        //}
+        private async void btnAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            var description = Description.Text;
+            DateTime? dateTime = null;
+            if (endDateDatePicker.Date != null)
+            {
+                dateTime = endDateDatePicker.Date.Value.DateTime;
+            }
+           
+            if (Description.Text.Length != 0)
+            {
+                await tvm.AddNewTask(description, dateTime);
+                /*Task t = new Task() {Description = description, EndDate = dateTime, DoneTask = false };
+                tvm.AddTaskCommand.Execute((object)t);*/
+                Description.Text = "";
+            }
+            else {
+                MessageDialog md = new MessageDialog("Description can't be empty!");
+                await md.ShowAsync();
+            }
+        }
 
         private void lvTasks_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
@@ -75,8 +86,7 @@ namespace TraveloreFE.View
         {
             if (selectedTask != null)
             {
-                MessageDialog md = new MessageDialog($"The task with id {selectedTask.Id} will be removed. Functionality still in progress.");
-                await md.ShowAsync();
+                tvm.DeleteTaskCommand.Execute(selectedTask.Id);
             }
         }
     }

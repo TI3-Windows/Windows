@@ -10,7 +10,7 @@
 
     
     <Grid>
-        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" BackRequested="navView_BackRequested">
+        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Categories" Icon="Home"></NavigationViewItem>
                 <NavigationViewItem Content="Tasks" Icon="List"></NavigationViewItem>

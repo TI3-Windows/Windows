@@ -33,7 +33,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
                 <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
-                <Button x:Name="btnAddTask" Content="Add task" Command="{Binding AddTaskCommand}"/>
+                <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

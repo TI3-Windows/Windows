@@ -28,7 +28,7 @@ namespace TraveloreFE.ViewModel.Commands
 
         public async void Execute(object parameter)
         {
-            await taskViewModel.AddTask();
+            //await taskViewModel.AddTask();
         }
     }
 }
