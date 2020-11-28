@@ -21,7 +21,7 @@ namespace TraveloreFE.ViewModel
             loadCategories();
         }
 
-        private async void loadCategories()
+        private void loadCategories()
         {
             //HttpClient httpClient = new HttpClient();
             //var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Category"));

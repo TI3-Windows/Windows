@@ -56,6 +56,14 @@ namespace TraveloreFE
             {
                 mainContent.Navigate(typeof(TravellistsView));
             }
+            if (args.InvokedItem.Equals("Login"))
+            {
+                mainContent.Navigate(typeof(LoginView));
+            }
+            if (args.InvokedItem.Equals("Register"))
+            {
+                mainContent.Navigate(typeof(RegisterView));
+            }
         }
 
     }

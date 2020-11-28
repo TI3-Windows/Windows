@@ -16,8 +16,9 @@
                 <NavigationViewItem Content="Tasks" Icon="List"></NavigationViewItem>
                 <NavigationViewItem Content="Map" Icon="World"></NavigationViewItem>
                 <NavigationViewItem Content="Travellist" Icon="List"></NavigationViewItem>
+                <NavigationViewItem Content="Login"></NavigationViewItem>
+                <NavigationViewItem Content="Register"></NavigationViewItem>
             </NavigationView.MenuItems>
-
             <Frame x:Name="mainContent"></Frame>
         </NavigationView>
     </Grid>

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using TraveloreFE.Model;
-using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,33 +20,17 @@ namespace TraveloreFE.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class TravellistsView : Page
+    public sealed partial class RegisterView : Page
     {
-        //public User User { get; set; }
-        //public UserViewModel uvm;
-        private Travellist selectedTravellist;
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            //User = (User)e.Parameter;
-            //DataContext = new TravellistViewModel(User);
-            //uvm = (UserViewModel)DataContext;
-        }
-
-        public TravellistsView()
+        public RegisterView()
         {
             this.InitializeComponent();
         }
 
-        private async void lvTravellist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void loginViewBtn_Click(object sender, RoutedEventArgs e)
         {
-            ListView lv = (ListView)sender;
-            selectedTravellist = (Travellist)lvTravellists.SelectedItem;
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(MainPage), selectedTravellist);
-
+            rootFrame.Navigate(typeof(LoginView));
         }
-
-
     }
 }

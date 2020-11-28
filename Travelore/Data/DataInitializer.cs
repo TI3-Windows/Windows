@@ -222,7 +222,7 @@ namespace Travelore.Data
                 t1.AddTask(ta1);
                 t1.AddTask(ta2);
                 t1.AddTask(ta3);
-                t1.AddTask(ta4);
+                t2.AddTask(ta4);
                 _context.SaveChanges();
             }
         }

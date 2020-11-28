@@ -48,8 +48,6 @@ namespace TraveloreFE.View
         {
             ListView lv = (ListView)sender;
             Task selectedTask = (Task)lvTasks.SelectedItem;
-            //MessageDialog md = new MessageDialog($"Selected: {selectedTask.Description}");
-            //await md.ShowAsync();
         }
 
         private async void btnAddTask_Click(object sender, RoutedEventArgs e)
@@ -64,8 +62,6 @@ namespace TraveloreFE.View
             if (Description.Text.Length != 0)
             {
                 await tvm.AddNewTask(description, dateTime);
-                /*Task t = new Task() {Description = description, EndDate = dateTime, DoneTask = false };
-                tvm.AddTaskCommand.Execute((object)t);*/
                 Description.Text = "";
             }
             else {

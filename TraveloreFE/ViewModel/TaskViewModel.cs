@@ -22,7 +22,7 @@ namespace TraveloreFE.ViewModel
         public ObservableCollection<Task> Tasks { get; set; }
         public Travellist Travellist { get; set; }
 
-        public ICommand AddTaskCommand { get; set; }
+        //public ICommand AddTaskCommand { get; set; }
         public ICommand DeleteTaskCommand { get; set; }
 
         public TaskViewModel(Travellist tl)
@@ -30,36 +30,16 @@ namespace TraveloreFE.ViewModel
             Travellist = tl;
             Tasks = new ObservableCollection<Task>();
             loadTasks();
-            AddTaskCommand = new AddTaskCommand(this);
+            //AddTaskCommand = new AddTaskCommand(this);
             DeleteTaskCommand = new DeleteTaskCommand(this);
         }
 
-        private async void loadTasks()
+        private void loadTasks()
         {
-            //HttpClient httpClient = new HttpClient();
-            //var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Task"));
-            //var taskList = JsonConvert.DeserializeObject<IList<Task>>(json);
-
             var taskList = Travellist.Tasks;
-
             foreach(var t in taskList)
             {
                 Tasks.Add(t);
-            }
-        }
-
-        // Add a Task WITHOUT Parameters
-        public async System.Threading.Tasks.Task AddTask()
-        {
-            var task = new Task() { Description = "testDescription", DoneTask = false, EndDate = DateTime.Now };
-            var taskJson = JsonConvert.SerializeObject(task);
-
-            HttpClient httpClient = new HttpClient();
-            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Task"),
-                new HttpStringContent(taskJson,Windows.Storage.Streams.UnicodeEncoding.Utf8,"application/json"));
-            if (res.IsSuccessStatusCode)
-            {
-                Tasks.Add(JsonConvert.DeserializeObject<Task>(res.Content.ToString()));
             }
         }
 

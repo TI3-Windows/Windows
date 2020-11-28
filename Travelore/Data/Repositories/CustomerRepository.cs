@@ -20,7 +20,13 @@ namespace Travelore.Data.Repositories
 
         public Customer GetBy(string email)
         {
-            return _customers.Include(c => c.TravelLists).SingleOrDefault(c => c.Email == email);
+            return _customers
+                .Include(c => c.TravelLists)
+                .ThenInclude(t => t.Tasks)
+                .Include(c => c.TravelLists)
+                .ThenInclude(c => c.Categories)
+                .ThenInclude(c => c.Items)
+                .SingleOrDefault(c => c.Email == email);
         }
 
         public void Add(Customer customer)
