@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TraveloreFE.Model;
+using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -23,11 +25,13 @@ namespace TraveloreFE.View
     /// </summary>
     public sealed partial class LoginView : Page
     {
-        Frame mainContent;
+        public UserViewModel uvm;
 
         public LoginView()
         {
             this.InitializeComponent();
+            DataContext = new UserViewModel();
+            uvm = (UserViewModel)DataContext;
         }
 
         private async void loginbtn_Click(object sender, RoutedEventArgs e)
@@ -46,8 +50,9 @@ namespace TraveloreFE.View
                 else
                 {
                     passwordStatusText.Text = string.Empty;
-                    MessageDialog md = new MessageDialog($"Username : {usernamebox.Text} \n Password : {passwordBox.Password}");
-                    await md.ShowAsync();
+                    //MessageDialog md = new MessageDialog($"Username : {usernamebox.Text} \n Password : {passwordBox.Password}");
+                    //await md.ShowAsync();
+                    await uvm.login();
                 }
             }
 
