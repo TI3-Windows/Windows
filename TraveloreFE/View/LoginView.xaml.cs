@@ -52,7 +52,7 @@ namespace TraveloreFE.View
                     passwordStatusText.Text = string.Empty;
                     //MessageDialog md = new MessageDialog($"Username : {usernamebox.Text} \n Password : {passwordBox.Password}");
                     //await md.ShowAsync();
-                    await uvm.login();
+                    await uvm.AuthenticateUser(usernamebox.Text,passwordBox.Password);
                 }
             }
 

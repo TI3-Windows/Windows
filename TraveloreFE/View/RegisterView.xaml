@@ -9,44 +9,24 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
-            <RowDefinition Height="0.15*" />
+            <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="26"/>
 
-            <RowDefinition Height="0.85*" />
+            <TextBox x:Name="tbEmail" PlaceholderText="Enter Email"/>
 
-        </Grid.RowDefinitions>
+            <TextBox  x:Name="tbFirstname" PlaceholderText="Firstname"/>
 
-        <Border Grid.Row="0" Background="LightBlue">
+            <TextBox x:Name="tbLastname"  PlaceholderText="Name"/>
 
-            <TextBlock Name="Register" Text="Register"  
-            TextAlignment="Center" FontSize="30"  
-            FontWeight="ExtraBlack"></TextBlock>
+            <PasswordBox x:Name="tbPassword"  PlaceholderText="Enter Password"/>
 
-        </Border>
+            <PasswordBox  x:Name="tbConfirmPassword" PlaceholderText="Confirm Password"/>
 
-        <StackPanel x:Name="stackone" Grid.Row="1">
-
-            <TextBox PlaceholderText="Enter Email" Width="300"  
-            Margin="0,50,0,0"></TextBox>
-
-            <TextBox PlaceholderText="Firstname"  
-            Width="300" Margin="0,10,0,0"></TextBox>
-
-            <TextBox PlaceholderText="Name"  
-            Width="300" Margin="0,10,0,0"></TextBox>
-
-            <PasswordBox PlaceholderText="Enter Password"  
-            Width="300" Margin="0,10,0,0"></PasswordBox>
-
-            <PasswordBox PlaceholderText="Confirm Password"  
-            Width="300" Margin="0,10,0,0"></PasswordBox>
-
-            <RelativePanel HorizontalAlignment="Center"  
-            Margin="0,10,0,0">
+            <RelativePanel HorizontalAlignment="Center">
 
                 <Button x:Name="registerbtn" Content="Register"  
-                Height="35" Width="70"/>
+                Height="35" Width="70" Click="registerbtn_Click"/>
 
                 <Button x:Name="loginViewBtn" Content="Back"  
                 Height="35" Width="65" Margin="10,0,0,0"  

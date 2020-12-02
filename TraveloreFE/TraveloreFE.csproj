@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Destination.cs" />
+    <Compile Include="Model\Globals.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Model\Travellist.cs" />

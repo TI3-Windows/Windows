@@ -9,23 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
-            <RowDefinition Height="0.15*" />
-
-            <RowDefinition Height="0.85*" />
-
-        </Grid.RowDefinitions>
-
-        <Border Grid.Row="0" Background="LightBlue">
-
-            <TextBlock Name="Login" Text="Login"  
-            TextAlignment="Center" FontSize="30"  
-            FontWeight="ExtraBlack"></TextBlock>
-
-        </Border>
-
-        <StackPanel x:Name="stackone" Grid.Row="1">
+            <TextBlock Text="Login" HorizontalAlignment="Center" FontSize="26"/>
 
             <TextBox x:Name="usernamebox" PlaceholderText="Enter Email"/>
             <TextBlock x:Name="usernameStatusText" HorizontalAlignment="Center"/>
@@ -33,8 +19,7 @@
             <PasswordBox x:Name="passwordBox" PlaceholderText="Enter Password"/>
             <TextBlock x:Name="passwordStatusText" HorizontalAlignment="Center"/>
 
-            <RelativePanel HorizontalAlignment="Center"  
-            Margin="0,10,0,0">
+            <RelativePanel HorizontalAlignment="Center">
 
                 <Button x:Name="loginbtn" Content="Login"  
                 Height="35" Width="65" Click="loginbtn_Click"/>
