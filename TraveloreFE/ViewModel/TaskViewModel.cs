@@ -85,7 +85,7 @@ namespace TraveloreFE.ViewModel
             if(res.IsSuccessStatusCode)
             {
                 Task task = Tasks.FirstOrDefault(t => t.Id == id);
-                task.DoneTask = !task.DoneTask;f
+                task.DoneTask = !task.DoneTask;
             }
         }
     }
