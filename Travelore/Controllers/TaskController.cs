@@ -57,5 +57,15 @@ namespace Travelore.Controllers
             _taskRepo.SaveChanges();
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult updateTask(int id)
+        {
+            Task taskUpdate = _taskRepo.GetByTaskId(id);
+            taskUpdate.DoneTask = !taskUpdate.DoneTask;
+            _taskRepo.Update(taskUpdate);
+            _taskRepo.SaveChanges();
+            return NoContent();
+        }
     }
 }

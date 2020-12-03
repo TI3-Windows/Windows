@@ -36,6 +36,7 @@ namespace TraveloreFE.View
 
         private async void loginbtn_Click(object sender, RoutedEventArgs e)
         {
+            apiCallStatusText.Text = string.Empty;
             if(usernamebox.Text.Length == 0)
             {
                 usernameStatusText.Text = "Please enter a username";
@@ -52,7 +53,24 @@ namespace TraveloreFE.View
                     passwordStatusText.Text = string.Empty;
                     //MessageDialog md = new MessageDialog($"Username : {usernamebox.Text} \n Password : {passwordBox.Password}");
                     //await md.ShowAsync();
-                    await uvm.AuthenticateUser(usernamebox.Text,passwordBox.Password);
+                    try
+                    {
+                        User user = await uvm.AuthenticateUser(usernamebox.Text,passwordBox.Password);
+                        if(user == null)
+                        {
+                            throw new Exception();
+                        } else
+                        {
+                            Globals.LoggedInUser = user;
+                            apiCallStatusText.Text = "Login succesful";
+                            Frame rootFrame = Window.Current.Content as Frame;
+                            rootFrame.Navigate(typeof(TravellistsView));
+                        }
+                    }
+                    catch(Exception)
+                    {
+                        apiCallStatusText.Text = "Error while trying to login. Try again later ...";
+                    }
                 }
             }
 

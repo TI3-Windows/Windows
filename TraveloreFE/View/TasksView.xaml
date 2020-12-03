@@ -26,6 +26,7 @@
                     <MenuFlyout x:Name="allContactsMenuFlyout">
                         <MenuFlyout.Items>
                             <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>
+                            <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click"/>
                         </MenuFlyout.Items>
                     </MenuFlyout>
                 </ListView.Resources>

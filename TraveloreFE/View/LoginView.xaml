@@ -30,6 +30,8 @@
 
             </RelativePanel>
 
+            <TextBlock x:Name="apiCallStatusText" HorizontalAlignment="Center"/>
+
             <Button x:Name="testBtn" Content="Travellists" Click="testBtn_Click"/>
         </StackPanel>
     </Grid>

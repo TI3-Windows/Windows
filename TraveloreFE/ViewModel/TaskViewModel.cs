@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -61,8 +62,7 @@ namespace TraveloreFE.ViewModel
         // Delete A Task
         public async System.Threading.Tasks.Task DeleteSelectedTask(int id)
         {
-            var taskId = id;
-            var taskIdJson = JsonConvert.SerializeObject(taskId);
+            var taskIdJson = JsonConvert.SerializeObject(id);
             HttpClient httpClient = new HttpClient();
             var url = $"http://localhost:5001/api/Task/{id}";
             var res = await httpClient.DeleteAsync(new Uri(url));
@@ -73,6 +73,19 @@ namespace TraveloreFE.ViewModel
                 {
                     Tasks.Remove(deletedTask);
                 }
+            }
+        }
+
+        public async System.Threading.Tasks.Task UpdateSelectedTask(int id)
+        {
+            var taskIdJson = JsonConvert.SerializeObject(id);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Task/{id}";
+            var res = await httpClient.PutAsync(new Uri(url),new HttpStringContent(taskIdJson, Windows.Storage.Streams.UnicodeEncoding.Utf8,"application/json"));
+            if(res.IsSuccessStatusCode)
+            {
+                Task task = Tasks.FirstOrDefault(t => t.Id == id);
+                task.DoneTask = !task.DoneTask;f
             }
         }
     }

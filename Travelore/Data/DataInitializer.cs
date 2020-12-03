@@ -30,7 +30,7 @@ namespace Travelore.Data
                 await CreateUser(customer1.Email, "P@ssword1111");
                 Customer customer2 = new Customer { Email = "customer2@hogent.be", FirstName = "Flor", LastName = "Jacob" };
                 _context.Customers.Add(customer2);
-                await CreateUser(customer2.Email, "P@ssword111");
+                await CreateUser(customer2.Email, "P@ssword1111");
                 _context.SaveChanges();
 
                 List<TravelList> travelLists = new List<TravelList>();

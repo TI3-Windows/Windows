@@ -85,5 +85,13 @@ namespace TraveloreFE.View
                 tvm.DeleteTaskCommand.Execute(selectedTask.Id);
             }
         }
+
+        private async void Update_Click(object sender, RoutedEventArgs e)
+        {
+            if(selectedTask != null)
+            {
+                await tvm.UpdateSelectedTask(selectedTask.Id);
+            }
+        }
     }
 }
