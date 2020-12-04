@@ -8,36 +8,61 @@
     xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer>
-        <StackPanel>
-            <ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
-                <!--<ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged">-->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
-                            <TextBlock FontSize="11" Text="{Binding Description}"/>
-                            <TextBlock FontSize="10" Text="{Binding EndDate}"/>
-                            <TextBlock FontSize="8" Text="{Binding DoneTask}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Resources>
-                    <MenuFlyout x:Name="allContactsMenuFlyout">
-                        <MenuFlyout.Items>
-                            <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>
-                            <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click"/>
-                        </MenuFlyout.Items>
-                    </MenuFlyout>
-                </ListView.Resources>
-            </ListView>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
-                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
-                <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"/>
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+    
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0" Grid.Column="0">
+                <StackPanel >
+                    <ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
+                        <!--<ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged">-->
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
+                                    <TextBlock FontSize="11" Text="{Binding Description}"/>
+                                    <TextBlock FontSize="10" Text="{Binding EndDate}"/>
+                                    <CheckBox Content="Done" IsChecked="{Binding DoneTask}" Click="Update_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Resources>
+                            <MenuFlyout x:Name="allContactsMenuFlyout">
+                                <MenuFlyout.Items>
+                                    <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>
+                                    <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click"/>
+                                </MenuFlyout.Items>
+                            </MenuFlyout>
+                        </ListView.Resources>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
+            
+            <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="*" MaxHeight="400"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="TitleTask" Text="Add a new task" FontSize="20" Grid.Row="0" Grid.ColumnSpan="3"/>
+                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"  Grid.Row="1" Grid.Column="2"/>
+            </Grid>
+            
+        </Grid>
+        
+   
     
     <!--<Page.DataContext>
         <viewmodel:TaskViewModel x:Name="vmT"/>
