@@ -6,13 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
     <Page.DataContext>
         <viewmodel:TravellistViewModel x:Name="vmTL"/>
     </Page.DataContext>
     <ScrollViewer>
         <StackPanel>
+            <!--<StackPanel.Background>
+                <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
+            </StackPanel.Background>-->
             <ListView x:Name="lvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="lvTravellist_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Travellist">

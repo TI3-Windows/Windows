@@ -25,6 +25,8 @@ namespace TraveloreFE.View
     /// </summary>
     public sealed partial class CategoriesView : Page
     {
+        public Item selectedItem;
+        public CategoriesViewModel cvm;
         public Travellist Travellist { get; set; }
         public CategoriesView()
         {
@@ -36,5 +38,13 @@ namespace TraveloreFE.View
             Travellist = (Travellist)e.Parameter;
             DataContext = new CategoriesViewModel(Travellist);
         }
+
+        //private async void Update_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (selectedCategory != null)
+        //    {
+        //        await cvm.UpdateSelectedCategory(selectedCategory.Id);
+        //    }
+        //}
     }
 }

@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TraveloreFE.Model;
+using Windows.Web.Http;
+using HttpClient = Windows.Web.Http.HttpClient;
 
 namespace TraveloreFE.ViewModel
 {
@@ -33,6 +35,19 @@ namespace TraveloreFE.ViewModel
             foreach (var c in categoryList)
             {
                 Categories.Add(c);
+            }
+        }
+
+        public async System.Threading.Tasks.Task UpdateSelectedCategory(int id)
+        {
+            var CategoryIdJson = JsonConvert.SerializeObject(id);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Category/{id}";
+            var res = await httpClient.PutAsync(new Uri(url), new HttpStringContent(CategoryIdJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if (res.IsSuccessStatusCode)
+            {
+                Category category = Categories.FirstOrDefault(t => t.Id == id);
+                //task.DoneTask = !task.DoneTask;
             }
         }
     }

@@ -38,7 +38,7 @@ namespace TraveloreFE.Model
             } 
         }
 
-        //public List<Item> Items { get; set; }
+        public List<Item> Items { get; set; }
 
         protected void RaisePropertyChanged(string name)
         {

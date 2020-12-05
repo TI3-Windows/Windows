@@ -5,8 +5,7 @@
     xmlns:local="using:TraveloreFE"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     
     <Grid>
@@ -19,7 +18,11 @@
                 <NavigationViewItem Content="Login"></NavigationViewItem>
                 <NavigationViewItem Content="Register"></NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="mainContent"></Frame>
+            <Frame x:Name="mainContent">
+                <!--<Frame.Background>
+                    <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
+                </Frame.Background>-->
+            </Frame>
         </NavigationView>
     </Grid>
 </Page>

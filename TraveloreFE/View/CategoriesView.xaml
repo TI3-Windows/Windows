@@ -17,6 +17,17 @@
                         <StackPanel>
                             <TextBlock Text="{Binding Name}"/>
                             <TextBlock Text="{Binding DoneCat}"/>
+                            <ListView ItemsSource="{Binding Items}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Amount}"/>
+                                            <CheckBox Content="Done" IsChecked="{Binding DoneItem}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

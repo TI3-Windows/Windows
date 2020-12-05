@@ -24,5 +24,14 @@ namespace Travelore.Controllers
         {
             return _categoryRepo.GetCategories();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult updateCategory(int id)
+        {
+            Category categoryUpdate = _categoryRepo.GetbyCategoryId(id);
+            _categoryRepo.Update(categoryUpdate);
+            _categoryRepo.SaveChanges();
+            return NoContent();
+        }
     }
 }
