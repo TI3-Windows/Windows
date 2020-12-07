@@ -8,23 +8,40 @@
     xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <ScrollViewer>
         <StackPanel>
-            <ListView ItemsSource="{Binding Categories}">
+            <ListView ItemsSource="{Binding Categories}" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding DoneCat}"/>
+                            <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="*" MaxHeight="400"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontSize="50" Grid.Row="0" Text="{Binding Name}"/>
+                                <TextBox x:Name="Naam" Header="Name" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="Amount" Header="Amount" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
+                                <Button x:Name="btnAddTask" Content="Add task" VerticalAlignment="Bottom" Click="btnAddTask_Click" Grid.Row="1" Grid.Column="2"/>
+                            </Grid>
+                            <!--<TextBlock Text="{Binding DoneCat}"/>-->
                             <ListView ItemsSource="{Binding Items}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Name}"/>
-                                            <TextBlock Text="{Binding Amount}"/>
-                                            <CheckBox Content="Done" IsChecked="{Binding DoneItem}" />
-                                        </StackPanel>
+                                        <Grid ColumnSpacing="10" RowSpacing="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding DoneItem}" Click="CheckBox_Click" Content="{Binding Name}"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Amount}"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

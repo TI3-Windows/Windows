@@ -39,6 +39,17 @@ namespace TraveloreFE.View
             DataContext = new CategoriesViewModel(Travellist);
         }
 
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+        private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         //private async void Update_Click(object sender, RoutedEventArgs e)
         //{
         //    if (selectedCategory != null)
