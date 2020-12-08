@@ -55,16 +55,20 @@ namespace TraveloreFE.View
                     //await md.ShowAsync();
                     try
                     {
-                        User user = await uvm.AuthenticateUser(usernamebox.Text,passwordBox.Password);
-                        if(user == null)
-                        {
+                        String token = await uvm.AuthenticateUser(usernamebox.Text,passwordBox.Password);
+                        if (token == null)
                             throw new Exception();
-                        } else
+                        User user = await uvm.GetUserDetails(token);
+                        if (user != null)
                         {
                             Globals.LoggedInUser = user;
                             apiCallStatusText.Text = "Login succesful";
                             Frame rootFrame = Window.Current.Content as Frame;
                             rootFrame.Navigate(typeof(TravellistsView));
+                        }
+                        else
+                        {
+                            throw new Exception();
                         }
                     }
                     catch(Exception)
@@ -81,12 +85,6 @@ namespace TraveloreFE.View
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(RegisterView));
-        }
-
-        private void testBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(TravellistsView));
         }
     }
 }

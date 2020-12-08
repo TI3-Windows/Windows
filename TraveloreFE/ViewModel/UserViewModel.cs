@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection.Metadata.Ecma335;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
@@ -25,7 +26,7 @@ namespace TraveloreFE.ViewModel
             User = new User();
         }
 
-        public async Task<User> AuthenticateUser(string email, string password)
+        public async Task<String> AuthenticateUser(string email, string password)
         {
             string json = JsonConvert.SerializeObject(new
             {
@@ -37,18 +38,12 @@ namespace TraveloreFE.ViewModel
             {
                 var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Account"),
                 new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
-                //MessageDialog md2 = new MessageDialog(res.Content.ToString());
-                //await md2.ShowAsync();
                 String access_token = res.Content.ToString();
                 if (access_token == null)
                 {
                     throw new Exception();
                 }
-                User user2 = new User();
-                user2 = await GetUserDetails(access_token);
-                MessageDialog md3 = new MessageDialog($"Email : {user2.Email}\n Firstname : {user2.FirstName}\n Lastname : {user2.LastName}");
-                await md3.ShowAsync();
-                return user2;
+                return access_token;
             } catch (Exception)
             {
                 MessageDialog md = new MessageDialog("Error authenticating");
@@ -63,14 +58,11 @@ namespace TraveloreFE.ViewModel
             HttpClient httpClient = new HttpClient();
             try
             {
-                httpClient.DefaultRequestHeaders.Authorization = new HttpCredentialsHeaderValue("Bearer ", token);
-                string response = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Customer"));
-                MessageDialog md4 = new MessageDialog($"{response}");
-                await md4.ShowAsync();
-                User user3 = new User();
-                user3 = JsonConvert.DeserializeObject<User>(response);
-                user3.access_token = token;
-                return user3;
+                httpClient.DefaultRequestHeaders.Authorization = new HttpCredentialsHeaderValue("Bearer", token);
+                var response = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Customer"));
+                User = JsonConvert.DeserializeObject<User>(response);
+                User.access_token = token;
+                return User;
             } catch (Exception)
             {
                 return null;
