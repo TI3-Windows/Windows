@@ -69,22 +69,27 @@ namespace TraveloreFE.ViewModel
             }
         }
 
-        public async Task<User> RegisterUser(string email, string password, string confirmPassword, string firstname, string lastname)
+        public async Task<String> RegisterUser(string email, string password, string confirmPassword, string firstname, string lastname)
         {
             string json = JsonConvert.SerializeObject(new
             {
                 email = email,
                 password = password,
-                confirmPassword = confirmPassword,
                 firstname = firstname,
-                lastname = lastname
+                lastname = lastname,
+                passwordConfirmation = confirmPassword
             });
             HttpClient httpClient = new HttpClient();
             try
             {
                 var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Account"),
                 new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
-                return JsonConvert.DeserializeObject<User>(res.Content.ToString());
+                String access_token = res.Content.ToString();
+                if(access_token == null)
+                {
+                    throw new Exception();
+                }
+                return access_token;
             }
             catch (Exception)
             {

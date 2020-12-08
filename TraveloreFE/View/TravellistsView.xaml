@@ -10,8 +10,8 @@
     <Page.DataContext>
         <viewmodel:TravellistViewModel x:Name="vmTL"/>
     </Page.DataContext>
-    <ScrollViewer>
-        <StackPanel>
+    <StackPanel>
+        <ScrollViewer>
             <!--<StackPanel.Background>
                 <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
             </StackPanel.Background>-->
@@ -36,7 +36,7 @@
                 <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
                 --><!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>--><!--
             </StackPanel>-->
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </StackPanel>
 </Page>
 

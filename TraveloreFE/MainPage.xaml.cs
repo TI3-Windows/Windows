@@ -56,15 +56,17 @@ namespace TraveloreFE
             {
                 mainContent.Navigate(typeof(TravellistsView));
             }
-            if (args.InvokedItem.Equals("Login"))
+            if(args.InvokedItem.Equals("Account"))
             {
-                mainContent.Navigate(typeof(LoginView));
-            }
-            if (args.InvokedItem.Equals("Register"))
-            {
-                mainContent.Navigate(typeof(RegisterView));
+                mainContent.Navigate(typeof(AccountView));
             }
         }
 
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.LoggedInUser = null;
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(LoginView));
+        }
     }
 }

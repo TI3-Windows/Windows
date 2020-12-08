@@ -14,14 +14,19 @@
             <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="26"/>
 
             <TextBox x:Name="tbEmail" PlaceholderText="Enter Email"/>
+            <TextBlock x:Name="emailStatusText" HorizontalAlignment="Center" SelectionHighlightColor="Red"/>
 
             <TextBox  x:Name="tbFirstname" PlaceholderText="Firstname"/>
+            <TextBlock x:Name="firstnameStatusText" HorizontalAlignment="Center"/>
 
             <TextBox x:Name="tbLastname"  PlaceholderText="Name"/>
+            <TextBlock x:Name="lastnameStatusText" HorizontalAlignment="Center"/>
 
             <PasswordBox x:Name="tbPassword"  PlaceholderText="Enter Password"/>
+            <TextBlock x:Name="passwordStatusText" HorizontalAlignment="Center"/>
 
             <PasswordBox  x:Name="tbConfirmPassword" PlaceholderText="Confirm Password"/>
+            <TextBlock x:Name="confirmPasswordStatusText" HorizontalAlignment="Center"/>
 
             <RelativePanel HorizontalAlignment="Center">
 
@@ -33,6 +38,8 @@
                 RelativePanel.RightOf="registerbtn" Click="loginViewBtn_Click"/>
 
             </RelativePanel>
+
+            <TextBlock x:Name="apiCallStatusText" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Page>

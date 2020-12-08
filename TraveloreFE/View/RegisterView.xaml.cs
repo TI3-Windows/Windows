@@ -51,17 +51,71 @@ namespace TraveloreFE.View
             string firstname = tbFirstname.Text;
             string lastname = tbLastname.Text;
 
-            User user = await uvm.RegisterUser(email, password, confirmPassword, firstname, lastname);
-            if(user == null)
+            if (tbEmail.Text.Length == 0)
             {
-                MessageDialog md = new MessageDialog("Username already exists");
-                await md.ShowAsync();
-                return;
+                emailStatusText.Text = "Email can't be empty";
             }
+            else
+            {
+                tbEmail.Text = String.Empty;
+                if (tbFirstname.Text.Length == 0)
+                {
+                    firstnameStatusText.Text = "Firstname can't be empty";
+                }
+                else
+                {
+                    tbFirstname.Text = String.Empty;
+                    if (tbLastname.Text.Length == 0)
+                    {
+                        lastnameStatusText.Text = "Lastname can't be empty";
+                    }
+                    else
+                    {
+                        tbLastname.Text = String.Empty;
+                        if (tbPassword.Password.Length == 0)
+                        {
+                            passwordStatusText.Text = "Password can't be empty";
+                        } 
+                        else
+                        {
+                            tbPassword.Password = String.Empty;
+                            /*if (!tbPassword.Password.Contains(tbConfirmPassword.Password))
+                            {
+                                confirmPasswordStatusText.Text = "Passwords must match";
+                            }
+                            else
+                            {*/
+                                tbConfirmPassword.Password = String.Empty;
+                                try
+                                {
+                                    String token = await uvm.RegisterUser(email, password, confirmPassword, firstname, lastname);
+                                    if (token == null)
+                                        throw new Exception();
+                                    User user = await uvm.GetUserDetails(token);
+                                    if (user != null)
+                                    {
+                                        Globals.LoggedInUser = user;
+                                        Frame rootFrame = Window.Current.Content as Frame;
+                                        rootFrame.Navigate(typeof(TravellistsView));
+                                    } 
+                                    else
+                                    {
+                                        throw new Exception();
+                                    }
+                                }
+                                catch(Exception)
+                                {
+                                    apiCallStatusText.Text = "Error while trying to register. Try again later ...";
+                                }
+                            //}
+                        }
+                    }
+                }
+               
+            }
+            
 
-            Globals.LoggedInUser = user;
-            MessageDialog md2 = new MessageDialog("Succesfull registration");
-            await md2.ShowAsync();
+            
         }
     }
 }

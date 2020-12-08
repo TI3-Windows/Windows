@@ -9,15 +9,17 @@
 
     
     <Grid>
-        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked">
+        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" IsSettingsVisible="False">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Categories" Icon="Home"></NavigationViewItem>
-                <NavigationViewItem Content="Tasks" Icon="List"></NavigationViewItem>
-                <NavigationViewItem Content="Map" Icon="World"></NavigationViewItem>
-                <NavigationViewItem Content="Travellist" Icon="List"></NavigationViewItem>
-                <NavigationViewItem Content="Login"></NavigationViewItem>
-                <NavigationViewItem Content="Register"></NavigationViewItem>
+                <NavigationViewItem Content="Categories" Icon="Home"/>
+                <NavigationViewItem Content="Account" Icon="Contact"/>
+                <NavigationViewItem Content="Tasks" Icon="List"/>
+                <NavigationViewItem Content="Map" Icon="World"/>
+                <NavigationViewItem Content="Travellist" Icon="List"/>
             </NavigationView.MenuItems>
+            <NavigationView.PaneFooter>
+                <Button Content="Logout" Click="LogoutButton_Click"/>
+            </NavigationView.PaneFooter>
             <Frame x:Name="mainContent">
                 <!--<Frame.Background>
                     <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
