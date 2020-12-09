@@ -14,19 +14,19 @@
             <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="26"/>
 
             <TextBox x:Name="tbEmail" PlaceholderText="Enter Email"/>
-            <TextBlock x:Name="emailStatusText" HorizontalAlignment="Center" SelectionHighlightColor="Red"/>
+            <TextBlock x:Name="emailStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <TextBox  x:Name="tbFirstname" PlaceholderText="Firstname"/>
-            <TextBlock x:Name="firstnameStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="firstnameStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <TextBox x:Name="tbLastname"  PlaceholderText="Name"/>
-            <TextBlock x:Name="lastnameStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="lastnameStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <PasswordBox x:Name="tbPassword"  PlaceholderText="Enter Password"/>
-            <TextBlock x:Name="passwordStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="passwordStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <PasswordBox  x:Name="tbConfirmPassword" PlaceholderText="Confirm Password"/>
-            <TextBlock x:Name="confirmPasswordStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="confirmPasswordStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <RelativePanel HorizontalAlignment="Center">
 
@@ -39,7 +39,7 @@
 
             </RelativePanel>
 
-            <TextBlock x:Name="apiCallStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="apiCallStatusText" HorizontalAlignment="Center" Foreground="Red"/>
         </StackPanel>
     </Grid>
 </Page>

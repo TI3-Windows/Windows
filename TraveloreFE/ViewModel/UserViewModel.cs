@@ -82,7 +82,7 @@ namespace TraveloreFE.ViewModel
             HttpClient httpClient = new HttpClient();
             try
             {
-                var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Account"),
+                var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Account/register"),
                 new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
                 String access_token = res.Content.ToString();
                 if(access_token == null)

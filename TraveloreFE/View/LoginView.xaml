@@ -16,10 +16,10 @@
             <TextBlock Text="Password : P@ssword1111" HorizontalAlignment="Center" FontSize="8"/>
 
             <TextBox x:Name="usernamebox" PlaceholderText="Enter Email"/>
-            <TextBlock x:Name="usernameStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="usernameStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <PasswordBox x:Name="passwordBox" PlaceholderText="Enter Password"/>
-            <TextBlock x:Name="passwordStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="passwordStatusText" HorizontalAlignment="Center" Foreground="Red"/>
 
             <RelativePanel HorizontalAlignment="Center">
 
@@ -32,7 +32,7 @@
 
             </RelativePanel>
 
-            <TextBlock x:Name="apiCallStatusText" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="apiCallStatusText" HorizontalAlignment="Center" Foreground="Red"/>
         </StackPanel>
     </Grid>
 </Page>
