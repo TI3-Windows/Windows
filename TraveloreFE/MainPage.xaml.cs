@@ -29,7 +29,6 @@ namespace TraveloreFE
         public MainPage()
         {
             this.InitializeComponent();
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

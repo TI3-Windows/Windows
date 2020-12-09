@@ -4,12 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TraveloreFE"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d">
-
-    
+    <Page.Resources>
+        <model:Globals x:Name="globals"/>
+    </Page.Resources>
     <Grid>
-        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" IsSettingsVisible="False">
+        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
+            <NavigationView.Header>
+                <StackPanel Orientation="Vertical">
+                    <PersonPicture/>
+                    <TextBlock Text="{Binding globals.LoggedInUser.FirstName}"/>
+                    <TextBlock Text="-- Logged in user --"/>
+                </StackPanel>
+            </NavigationView.Header>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Categories" Icon="Home"/>
                 <NavigationViewItem Content="Account" Icon="Contact"/>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TraveloreFE.Model
 {
-    class Globals
+    public class Globals
     {
         public static User LoggedInUser { get; set; }
     }
