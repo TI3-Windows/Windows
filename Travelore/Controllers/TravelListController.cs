@@ -14,11 +14,16 @@ namespace Travelore.Controllers
     public class TravelListController : ControllerBase
     {
         private readonly ITravelListRepository _travelRepo;
-        
+        public readonly ICustomerRepository _customerRepo;
 
-        public TravelListController(ITravelListRepository travelListRepository)
+
+        public TravelListController(
+            ITravelListRepository travelListRepository,
+            ICustomerRepository customerRepository
+            )
         {
             _travelRepo = travelListRepository;
+            _customerRepo = customerRepository;
         }
 
         [HttpGet]
@@ -28,9 +33,17 @@ namespace Travelore.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TravelList> GetTravelLists(int id)
+        public ActionResult<TravelList> GetTravelList(int id)
         {
             return _travelRepo.GetTravelListId(id);
+        } 
+
+        [HttpGet("User")]
+        public IEnumerable<TravelList> GetTravelListsByUser()
+        {
+            Customer c = _customerRepo.GetBy(User.Identity.Name);
+            return c.TravelLists;
         }
+
     }
 }

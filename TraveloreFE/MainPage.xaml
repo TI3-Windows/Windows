@@ -16,6 +16,7 @@
                 <StackPanel Orientation="Vertical">
                     <PersonPicture/>
                     <TextBlock Text="{Binding globals.LoggedInUser.FirstName}"/>
+                    <TextBlock Text="{Binding globals.LoggedInUser.Email}"/>
                     <TextBlock Text="-- Logged in user --"/>
                 </StackPanel>
             </NavigationView.Header>
@@ -24,6 +25,7 @@
                 <NavigationViewItem Content="Account" Icon="Contact"/>
                 <NavigationViewItem Content="Tasks" Icon="List"/>
                 <NavigationViewItem Content="Map" Icon="World"/>
+                <NavigationViewItem Content="Itinerary" Icon="List"/>
                 <NavigationViewItem Content="Travellist" Icon="List"/>
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>

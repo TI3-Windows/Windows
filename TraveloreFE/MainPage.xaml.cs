@@ -55,7 +55,11 @@ namespace TraveloreFE
             {
                 mainContent.Navigate(typeof(TravellistsView));
             }
-            if(args.InvokedItem.Equals("Account"))
+            if (args.InvokedItem.Equals("Itinerary"))
+            {
+                mainContent.Navigate(typeof(ItineraryView), Travellist);
+            }
+            if (args.InvokedItem.Equals("Account"))
             {
                 mainContent.Navigate(typeof(AccountView));
             }

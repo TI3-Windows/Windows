@@ -26,5 +26,21 @@ namespace Travelore.Model
         {
 
         }
+
+        public Destination(
+            string name,
+            string street,
+            string nr,
+            string description,
+            string city,
+            DateTime visitTime)
+        {
+            Name = name;
+            Street = street;
+            Nr = nr;
+            Description = description;
+            City = city;
+            VisitTime = visitTime;
+        }
     }
 }

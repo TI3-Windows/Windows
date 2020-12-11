@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -223,6 +224,21 @@ namespace Travelore.Data
                 t1.AddTask(ta2);
                 t1.AddTask(ta3);
                 t2.AddTask(ta4);
+                _context.SaveChanges();
+
+                //Itinerary
+                List<Destination> it = new List<Destination>
+                {
+                    new Destination("France", "Parisstreet", "5", "Quick Visit", "Paris", new DateTime()),
+                    new Destination("Spain", "Madridstreet", "5", "Quick Visit", "Madrid", new DateTime()),
+                    new Destination("Italy", "Romestreet", "5", "Quick Visit", "Rome", new DateTime()),
+                    new Destination("Netherlands", "Amsterdamstreet", "5", "Quick Visit", "Amsterdam", new DateTime()),
+                    new Destination("Germany", "Berlinstreet", "5", "Quick Visit", "Berlin", new DateTime()),
+                    new Destination("Portugal", "Lisbonstreet", "5", "Quick Visit", "Lisbon", new DateTime()),
+                    new Destination("Belgium", "Brusselsstreet", "5", "Quick Visit", "Brussels", new DateTime()),
+                    new Destination("England", "Londonstreet", "5", "Quick Visit", "London", new DateTime())
+                };
+                travelLists.ForEach(t => t.Itinerary = it);
                 _context.SaveChanges();
             }
         }
