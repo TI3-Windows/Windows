@@ -28,16 +28,24 @@
                                     <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
                                     <TextBlock FontSize="11" Text="{Binding Description}"/>
                                     <TextBlock FontSize="10" Text="{Binding EndDate}"/>
-                                    <CheckBox Content="Done" IsChecked="{Binding DoneTask}" Click="Update_Click"/>
+                                    <CheckBox Content="Done" IsChecked="{Binding DoneTask}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.Resources>
                             <MenuFlyout x:Name="allContactsMenuFlyout">
                                 <MenuFlyout.Items>
-                                    <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>
-                                    <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click"/>
-                                </MenuFlyout.Items>
+                                    <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <SymbolIcon Symbol="Remove"/>
+                                    </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <SymbolIcon Symbol="Accept"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout.Items>
                             </MenuFlyout>
                         </ListView.Resources>
                     </ListView>

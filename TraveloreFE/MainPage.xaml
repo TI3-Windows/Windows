@@ -7,19 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d">
-    <Page.Resources>
-        <model:Globals x:Name="globals"/>
-    </Page.Resources>
     <Grid>
         <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
-            <NavigationView.Header>
-                <StackPanel Orientation="Vertical">
-                    <PersonPicture/>
-                    <TextBlock Text="{Binding globals.LoggedInUser.FirstName}"/>
-                    <TextBlock Text="{Binding globals.LoggedInUser.Email}"/>
-                    <TextBlock Text="-- Logged in user --"/>
-                </StackPanel>
-            </NavigationView.Header>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Categories" Icon="Home"/>
                 <NavigationViewItem Content="Account" Icon="Contact"/>

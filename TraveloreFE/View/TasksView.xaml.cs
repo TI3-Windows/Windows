@@ -44,10 +44,15 @@ namespace TraveloreFE.View
             tvm = (TaskViewModel)DataContext;
         }
 
-        private void lvTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void lvTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListView lv = (ListView)sender;
             Task selectedTask = (Task)lvTasks.SelectedItem;
+            if (selectedTask != null)
+            {
+                await tvm.UpdateSelectedTask(selectedTask.Id);
+            }
+
         }
 
         private async void btnAddTask_Click(object sender, RoutedEventArgs e)
@@ -91,6 +96,15 @@ namespace TraveloreFE.View
             if(selectedTask != null)
             {
                 await tvm.UpdateSelectedTask(selectedTask.Id);
+            }
+        }
+
+        private async void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedTask != null)
+            {
+                MessageDialog md = new MessageDialog($"Selected : {selectedTask.Description}");
+                await md.ShowAsync();
             }
         }
     }

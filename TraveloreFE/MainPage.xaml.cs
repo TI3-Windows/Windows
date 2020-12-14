@@ -61,7 +61,7 @@ namespace TraveloreFE
             }
             if (args.InvokedItem.Equals("Account"))
             {
-                mainContent.Navigate(typeof(AccountView));
+                mainContent.Navigate(typeof(AccountView),Globals.LoggedInUser);
             }
         }
 
