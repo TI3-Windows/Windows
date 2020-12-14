@@ -25,6 +25,7 @@ namespace TraveloreFE
     public sealed partial class MainPage : Page
     {
         public Travellist Travellist { get; set; }
+        public User user;
 
         public MainPage()
         {
@@ -35,6 +36,8 @@ namespace TraveloreFE
         {
             Travellist = (Travellist)e.Parameter;
             mainContent.Navigate(typeof(CategoriesView), Travellist);
+            user = Globals.LoggedInUser;
+            this.DataContext = user;
         }
 
         private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -58,10 +61,6 @@ namespace TraveloreFE
             if (args.InvokedItem.Equals("Itinerary"))
             {
                 mainContent.Navigate(typeof(ItineraryView), Travellist);
-            }
-            if (args.InvokedItem.Equals("Account"))
-            {
-                mainContent.Navigate(typeof(AccountView),Globals.LoggedInUser);
             }
         }
 

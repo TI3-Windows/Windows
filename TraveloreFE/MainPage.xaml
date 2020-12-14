@@ -9,6 +9,24 @@
     mc:Ignorable="d">
     <Grid>
         <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
+            <NavigationView.Header>
+                <Button Content="Account">
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Account Page"/>
+                                <TextBlock Text="Firstname :"/>
+                                <TextBlock Text="{Binding FirstName}"/>
+                                <TextBlock Text="Lastname :"/>
+                                <TextBlock Text="{Binding LastName}"/>
+                                <TextBlock Text="Email :"/>
+                                <TextBlock Text="{Binding Email}"/>
+                                <Button Content="Logout" Click="LogoutButton_Click"/>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </NavigationView.Header>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Categories" Icon="Home"/>
                 <NavigationViewItem Content="Account" Icon="Contact"/>
@@ -17,9 +35,6 @@
                 <NavigationViewItem Content="Itinerary" Icon="List"/>
                 <NavigationViewItem Content="Travellist" Icon="List"/>
             </NavigationView.MenuItems>
-            <NavigationView.PaneFooter>
-                <Button Content="Logout" Click="LogoutButton_Click"/>
-            </NavigationView.PaneFooter>
             <Frame x:Name="mainContent">
                 <!--<Frame.Background>
                     <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
