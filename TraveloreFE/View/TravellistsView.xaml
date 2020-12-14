@@ -15,27 +15,24 @@
             <!--<StackPanel.Background>
                 <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
             </StackPanel.Background>-->
-            <ListView x:Name="lvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="lvTravellist_SelectionChanged">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Travellist">
-                        <StackPanel>
-                            <TextBlock FontSize="11" Text="{x:Bind Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Resources>
-                    <MenuFlyout x:Name="allContactsMenuFlyout">
-                        <MenuFlyout.Items>
-                            <!--<MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>-->
-                        </MenuFlyout.Items>
-                    </MenuFlyout>
-                </ListView.Resources>
-            </ListView>
-            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
-                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
-                --><!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>--><!--
-            </StackPanel>-->
+            <StackPanel>
+                <TextBlock Text="Choose your trip!" FontSize="40" HorizontalAlignment="Center"/>
+                <GridView x:Name="gvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="gvTravellist_SelectionChanged">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Travellist">
+                            <StackPanel Width="264" Height="48" Padding="12" Orientation="Horizontal" AutomationProperties.Name="{x:Bind Name}">
+                                <SymbolIcon Symbol="Audio" VerticalAlignment="Top"/>
+                                <TextBlock Margin="12,0,0,0" Width="204" Text="{x:Bind Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </StackPanel>
         </ScrollViewer>
     </StackPanel>
 </Page>

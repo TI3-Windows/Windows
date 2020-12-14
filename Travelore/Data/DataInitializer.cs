@@ -38,10 +38,27 @@ namespace Travelore.Data
                 TravelList t1 = new TravelList("Summer 2021", "Buthan", "Florstraat", "33A", DateTime.Now.AddDays(100), DateTime.Now.AddDays(110));
                 TravelList t2 = new TravelList("#SummerIsLit", "Australië", "Blipblop", "1", DateTime.Now.AddDays(33), DateTime.Now.AddDays(66));
                 TravelList t3 = new TravelList("Flor summer", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                // Test
+              /*TravelList t4 = new TravelList("test 1", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                TravelList t5 = new TravelList("test 2", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                TravelList t6 = new TravelList("test 3", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                TravelList t7 = new TravelList("test 4", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                TravelList t8 = new TravelList("test 5", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                TravelList t9 = new TravelList("test 6", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));
+                TravelList t10 = new TravelList("test 7", "DorpLand", "Vlasbloemstraat", "3", DateTime.Now.AddDays(75), DateTime.Now.AddDays(80));*/
+
 
                 travelLists.Add(t1);
                 travelLists.Add(t2);
                 travelLists.Add(t3);
+                // Test
+              /*travelLists.Add(t4);
+                travelLists.Add(t5);
+                travelLists.Add(t6);
+                travelLists.Add(t7);
+                travelLists.Add(t8);
+                travelLists.Add(t9);
+                travelLists.Add(t10);*/
 
                 foreach (TravelList t in travelLists)
                     _context.TravelLists.Add(t);
@@ -49,6 +66,15 @@ namespace Travelore.Data
 
                 customer1.AddTravelLists(t1);
                 customer1.AddTravelLists(t2);
+                // Test
+                /*customer1.AddTravelLists(t4);
+                customer1.AddTravelLists(t5);
+                customer1.AddTravelLists(t6);
+                customer1.AddTravelLists(t7);
+                customer1.AddTravelLists(t8);
+                customer1.AddTravelLists(t9);
+                customer1.AddTravelLists(t10);*/
+
                 customer2.AddTravelLists(t3);
                 _context.SaveChanges();
 

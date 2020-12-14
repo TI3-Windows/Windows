@@ -40,15 +40,12 @@ namespace TraveloreFE.View
             this.InitializeComponent();
         }
 
-        private async void lvTravellist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void gvTravellist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListView lv = (ListView)sender;
-            selectedTravellist = (Travellist)lvTravellists.SelectedItem;
+            GridView gv = (GridView)sender;
+            selectedTravellist = (Travellist)gvTravellists.SelectedItem;
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), selectedTravellist);
-
         }
-
-
     }
 }

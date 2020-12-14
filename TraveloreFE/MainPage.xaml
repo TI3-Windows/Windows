@@ -8,32 +8,40 @@
     xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d">
     <Grid>
-        <NavigationView x:Name="navView" ItemInvoked="navView_ItemInvoked" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
+        <NavigationView x:Name="navView" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
             <NavigationView.Header>
-                <Button Content="Account">
-                    <Button.Flyout>
-                        <Flyout>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Account Page"/>
-                                <TextBlock Text="Firstname :"/>
-                                <TextBlock Text="{Binding FirstName}"/>
-                                <TextBlock Text="Lastname :"/>
-                                <TextBlock Text="{Binding LastName}"/>
-                                <TextBlock Text="Email :"/>
-                                <TextBlock Text="{Binding Email}"/>
-                                <Button Content="Logout" Click="LogoutButton_Click"/>
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="HeaderPaneText" Grid.Row="0" Grid.Column="0" FontSize="28"/>
+                    <Button Content="Account" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel Orientation="Vertical" Margin="10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding FirstName}"/>
+                                        <TextBlock Text=" "/>
+                                        <TextBlock Text="{Binding LastName}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Email}"/>
+                                    <Button Content="Logout" Click="LogoutButton_Click"/>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
             </NavigationView.Header>
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Categories" Icon="Home"/>
-                <NavigationViewItem Content="Account" Icon="Contact"/>
-                <NavigationViewItem Content="Tasks" Icon="List"/>
-                <NavigationViewItem Content="Map" Icon="World"/>
-                <NavigationViewItem Content="Itinerary" Icon="List"/>
-                <NavigationViewItem Content="Travellist" Icon="List"/>
+                <NavigationViewItem Content="Travellist" Icon="Home" Tapped="NavigationViewHome_Tapped"/>
+                <NavigationViewItem Content="Categories" Icon="List" Tapped="NavigationViewCategories_Tapped"/>
+                <NavigationViewItem Content="Tasks" Icon="List" Tapped="NavigationViewTasks_Tapped"/>
+                <NavigationViewItem Content="Map" Icon="World" Tapped="NavigationViewMap_Tapped"/>
+                <NavigationViewItem Content="Itinerary" Icon="List" Tapped="NavigationViewItinerary_Tapped"/>
             </NavigationView.MenuItems>
             <Frame x:Name="mainContent">
                 <!--<Frame.Background>

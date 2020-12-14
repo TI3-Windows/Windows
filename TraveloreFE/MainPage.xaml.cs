@@ -36,32 +36,9 @@ namespace TraveloreFE
         {
             Travellist = (Travellist)e.Parameter;
             mainContent.Navigate(typeof(CategoriesView), Travellist);
+            HeaderPaneText.Text = "Categories";
             user = Globals.LoggedInUser;
             this.DataContext = user;
-        }
-
-        private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-        { 
-            if(args.InvokedItem.Equals("Categories"))
-            {
-                mainContent.Navigate(typeof(CategoriesView), Travellist);
-            }
-            if(args.InvokedItem.Equals("Tasks"))
-            {
-                mainContent.Navigate(typeof(TasksView), Travellist);
-            }
-            if(args.InvokedItem.Equals("Map"))
-            {
-                mainContent.Navigate(typeof(MapRoute));
-            }
-            if (args.InvokedItem.Equals("Travellist"))
-            {
-                mainContent.Navigate(typeof(TravellistsView));
-            }
-            if (args.InvokedItem.Equals("Itinerary"))
-            {
-                mainContent.Navigate(typeof(ItineraryView), Travellist);
-            }
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -69,6 +46,36 @@ namespace TraveloreFE
             Globals.LoggedInUser = null;
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(LoginView));
+        }
+
+        private void NavigationViewCategories_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            mainContent.Navigate(typeof(CategoriesView), Travellist);
+            HeaderPaneText.Text = "Categories";
+        }
+
+        private void NavigationViewTasks_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            mainContent.Navigate(typeof(TasksView), Travellist);
+            HeaderPaneText.Text = "Tasks";
+        }
+
+        private void NavigationViewItinerary_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            mainContent.Navigate(typeof(ItineraryView), Travellist);
+            HeaderPaneText.Text = "Itinerary";
+        }
+
+        private void NavigationViewMap_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            mainContent.Navigate(typeof(MapRoute));
+            HeaderPaneText.Text = "Map";
+        }
+
+        private void NavigationViewHome_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(TravellistsView));
         }
     }
 }
