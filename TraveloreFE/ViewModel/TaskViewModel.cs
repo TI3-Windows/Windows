@@ -1,16 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TraveloreFE.Model;
-using TraveloreFE.View;
 using TraveloreFE.ViewModel.Commands;
 using Windows.Web.Http;
 using HttpClient = Windows.Web.Http.HttpClient;

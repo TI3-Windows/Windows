@@ -7,6 +7,7 @@ using TraveloreFE.Model;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,17 +28,20 @@ namespace TraveloreFE.View
         //public User User { get; set; }
         //public UserViewModel uvm;
         private Travellist selectedTravellist;
+        public TravellistViewModel tvm;
+
+        public TravellistsView()
+        {
+            this.InitializeComponent();
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //User = (User)e.Parameter;
             //DataContext = new TravellistViewModel(User);
             //uvm = (UserViewModel)DataContext;
-        }
-
-        public TravellistsView()
-        {
-            this.InitializeComponent();
+            DataContext = new TravellistViewModel();
+            tvm = (TravellistViewModel)DataContext;
         }
 
         private async void gvTravellist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,6 +50,21 @@ namespace TraveloreFE.View
             selectedTravellist = (Travellist)gvTravellists.SelectedItem;
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), selectedTravellist);
+        }
+
+        private async void addTravellist_Click(object sender, RoutedEventArgs e)
+        {
+            var travellist = TravellistName.Text;
+            if (TravellistName.Text.Length != 0)
+            {
+                await tvm.AddNewTravellist(travellist);
+                TravellistName.Text = "";
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("The title can't be empty!");
+                await md.ShowAsync();
+            }
         }
     }
 }

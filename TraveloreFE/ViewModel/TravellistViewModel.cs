@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using TraveloreFE.Model;
+using Windows.Web.Http;
+using HttpClient = Windows.Web.Http.HttpClient;
 
 namespace TraveloreFE.ViewModel
 {
-    class TravellistViewModel
+    public class TravellistViewModel
     {
         //public User User { get; set; }
         public ObservableCollection<Travellist> Travellists { get; set; }
@@ -35,5 +35,19 @@ namespace TraveloreFE.ViewModel
             }
         }
 
+        public async System.Threading.Tasks.Task AddNewTravellist(string name/*, string country, string street, string houseNr, DateTime? dateLeave, DateTime? dateBack*/)
+        {
+            //var travellist = new Travellist() { Name = name, Country = country, Street = street, HouseNr = houseNr, DateLeave = dateLeave, DateBack = dateBack };
+            var test = new Travellist() { Name = name, Country = "country", Street = "street", HouseNr = "nr", DateLeave = DateTime.Now, DateBack = DateTime.Now };
+            var travellistJson = JsonConvert.SerializeObject(test);
+
+            HttpClient httpClient = new HttpClient();
+            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Travellist"),
+                new HttpStringContent(travellistJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if(res.IsSuccessStatusCode)
+            {
+                Travellists.Add(JsonConvert.DeserializeObject<Travellist>(res.Content.ToString()));
+            }
+        }
     }
 }

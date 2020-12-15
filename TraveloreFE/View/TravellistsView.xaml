@@ -15,13 +15,22 @@
             <!--<StackPanel.Background>
                 <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
             </StackPanel.Background>-->
-            <StackPanel>
-                <TextBlock Text="Choose your trip!" FontSize="40" HorizontalAlignment="Center"/>
-                <GridView x:Name="gvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="gvTravellist_SelectionChanged">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Choose your trip!" FontSize="40" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GridView x:Name="gvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="gvTravellist_SelectionChanged">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:Travellist">
                             <StackPanel Width="264" Height="48" Padding="12" Orientation="Horizontal" AutomationProperties.Name="{x:Bind Name}">
-                                <SymbolIcon Symbol="Audio" VerticalAlignment="Top"/>
+                                <SymbolIcon Symbol="Street" VerticalAlignment="Top"/>
                                 <TextBlock Margin="12,0,0,0" Width="204" Text="{x:Bind Name}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -33,6 +42,13 @@
                     </GridView.ItemsPanel>
                 </GridView>
             </StackPanel>
+                <StackPanel Width="500" Orientation="Horizontal" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">
+                    <SymbolIcon Symbol="Add" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,15,0,0"/>
+                    <TextBox x:Name="TravellistName" PlaceholderText="Title" HorizontalAlignment="Center" Width="300" Margin="10"/>
+                    <Button Content="Create" HorizontalAlignment="Right" Click="addTravellist_Click"/>
+                </StackPanel>
+            </Grid>
+            
         </ScrollViewer>
     </StackPanel>
 </Page>

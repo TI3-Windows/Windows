@@ -45,5 +45,21 @@ namespace Travelore.Controllers
             return c.TravelLists;
         }
 
+        [HttpPost]
+        public ActionResult NewTravellist(TravelList t)
+        {
+            TravelList travellist = new TravelList()
+            {
+                Name = t.Name,
+                Country = t.Country,
+                Street = t.Street,
+                HouseNr = t.HouseNr,
+                DateLeave = t.DateLeave,
+                DateBack = t.DateBack
+            };
+            _travelRepo.Add(travellist);
+            _travelRepo.SaveChanges();
+            return CreatedAtAction(nameof(GetTravelList), new { id = travellist.Id }, travellist);
+        }
     }
 }
