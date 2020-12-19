@@ -12,7 +12,6 @@ namespace TraveloreFE.Model
         public event PropertyChangedEventHandler PropertyChanged;
         
         private string _description;
-        private DateTime? _endDate;
         private bool _doneTask;
 
         public int Id { get; set; }
@@ -23,15 +22,6 @@ namespace TraveloreFE.Model
             set {
                 _description = value;
                 RaisePropertyChanged("Description");
-            } 
-        }
-        public DateTime? EndDate {
-            get {
-                return _endDate;
-            }
-            set {
-                _endDate = value;
-                RaisePropertyChanged("EndDate");
             } 
         }
         public bool DoneTask {

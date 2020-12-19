@@ -19,10 +19,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="HeaderPaneText" Grid.Row="0" Grid.Column="0" FontSize="28"/>
-                    <Button Content="Account" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE8D4;" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
                         <Button.Flyout>
                             <Flyout>
-                                <StackPanel Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Vertical" Margin="5" Padding="5">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding FirstName}"/>
                                         <TextBlock Text=" "/>

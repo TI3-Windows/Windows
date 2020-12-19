@@ -41,7 +41,6 @@ namespace Travelore.Controllers
             Task task = new Task()
             {
                 Description = t.Description,
-                EndDate = t.EndDate,
                 DoneTask = false,
             };
             _taskRepo.Add(task);

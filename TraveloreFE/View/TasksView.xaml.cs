@@ -58,15 +58,9 @@ namespace TraveloreFE.View
         private async void btnAddTask_Click(object sender, RoutedEventArgs e)
         {
             var description = Description.Text;
-            DateTime? dateTime = null;
-            if (endDateDatePicker.Date != null)
-            {
-                dateTime = endDateDatePicker.Date.Value.DateTime;
-            }
-           
             if (Description.Text.Length != 0)
             {
-                await tvm.AddNewTask(description, dateTime);
+                await tvm.AddNewTask(description);
                 Description.Text = "";
             }
             else {

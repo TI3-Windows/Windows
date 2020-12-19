@@ -5,9 +5,14 @@
     xmlns:local="using:TraveloreFE.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:viewmodel="using:TraveloreFE.ViewModel" xmlns:model="using:TraveloreFE.Model"
+    xmlns:viewmodel="using:TraveloreFE.ViewModel" 
+    xmlns:model="using:TraveloreFE.Model" 
+    xmlns:local1="using:TraveloreFE.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <local1:BoolToSymbolConverter x:Key="myConverter"/>
+    </Page.Resources>
     
         <Grid>
             <Grid.ColumnDefinitions>
@@ -24,12 +29,13 @@
                         <!--<ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged">-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                <StackPanel Orientation="Horizontal">
                                     <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
-                                    <TextBlock FontSize="11" Text="{Binding Description}"/>
-                                    <TextBlock FontSize="10" Text="{Binding EndDate}"/>
-                                    <CheckBox Content="Done" IsChecked="{Binding DoneTask}"/>
-                                </StackPanel>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding DoneTask, Converter={StaticResource myConverter}}" />
+                                <TextBlock FontSize="11" Text="{Binding Description}"/>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73A;"/>
+                                <CheckBox Content="Done" IsChecked="{Binding DoneTask}"/>
+                            </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.Resources>
@@ -59,13 +65,11 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
                 <TextBlock x:Name="TitleTask" Text="Add a new task" FontSize="20" Grid.Row="0" Grid.ColumnSpan="3"/>
-                <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-                <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"  Grid.Row="1" Grid.Column="2"/>
+            <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+            <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"  Grid.Row="1" Grid.Column="1"/>
             </Grid>
             
         </Grid>

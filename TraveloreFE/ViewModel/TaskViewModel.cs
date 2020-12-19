@@ -38,9 +38,9 @@ namespace TraveloreFE.ViewModel
         }
 
         // Add A Task WITH Parameters
-        public async System.Threading.Tasks.Task AddNewTask(string description, DateTime? dateTime)
+        public async System.Threading.Tasks.Task AddNewTask(string description)
         {
-            var task = new Task() { Description = description , DoneTask = false, EndDate = dateTime };
+            var task = new Task() { Description = description , DoneTask = false};
             var taskJson = JsonConvert.SerializeObject(task);
 
             HttpClient httpClient = new HttpClient();
