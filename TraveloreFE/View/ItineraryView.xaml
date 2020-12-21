@@ -7,41 +7,41 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel>
-        <ScrollViewer>
-            <!--<StackPanel.Background>
+    <ScrollViewer>
+        <!--<StackPanel.Background>
                 <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
             </StackPanel.Background>-->
-            <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Travellist">
-                        <StackPanel>
-                            <TextBlock FontSize="16" Text="{Binding Name}"/>
-                            <TextBlock FontSize="11" Text="{Binding Street}"/>
-                            <TextBlock FontSize="11" Text="{Binding Nr}"/>
-                            <TextBlock FontSize="11" Text="{Binding Description}"/>
-                            <TextBlock FontSize="11" Text="{Binding City}"/>
-                            <TextBlock FontSize="11" Text="{Binding VisitTime}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Resources>
-                    <MenuFlyout x:Name="allContactsMenuFlyout">
-                        <MenuFlyout.Items>
-                            <!--<MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click"/>-->
-                        </MenuFlyout.Items>
-                    </MenuFlyout>
-                </ListView.Resources>
-            </ListView>
-            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
                 <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
                 -->
-            <!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>-->
-            <!--
+        <!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>-->
+        <!--
             </StackPanel>-->
-            
-            
-        </ScrollViewer>
-    </StackPanel>
+
+        <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Travellist">
+                    <Grid>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Padding="5,1,5,1"
+                                 Opacity=".75">
+                            <TextBlock Text="{Binding Name}" FontSize="32" FontWeight="Bold" Height="50"/>
+                            <TextBlock Text="{Binding VisitTime}" FontSize="16" Height="32"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="123" Text="{Binding Street}" FontSize="16" Height="32"/>
+                                <TextBlock Width="123" Text="{Binding Nr}" FontSize="16"/>
+                                <TextBlock Width="123" Text="{Binding City}" FontSize="16"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Description}" Height="57" FontSize="16"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </ScrollViewer>
+
+
+
 </Page>

@@ -255,14 +255,14 @@ namespace Travelore.Data
                 //Itinerary
                 List<Destination> it = new List<Destination>
                 {
-                    new Destination("France", "Parisstreet", "5", "Quick Visit", "Paris", new DateTime()),
-                    new Destination("Spain", "Madridstreet", "5", "Quick Visit", "Madrid", new DateTime()),
-                    new Destination("Italy", "Romestreet", "5", "Quick Visit", "Rome", new DateTime()),
-                    new Destination("Netherlands", "Amsterdamstreet", "5", "Quick Visit", "Amsterdam", new DateTime()),
-                    new Destination("Germany", "Berlinstreet", "5", "Quick Visit", "Berlin", new DateTime()),
-                    new Destination("Portugal", "Lisbonstreet", "5", "Quick Visit", "Lisbon", new DateTime()),
-                    new Destination("Belgium", "Brusselsstreet", "5", "Quick Visit", "Brussels", new DateTime()),
-                    new Destination("England", "Londonstreet", "5", "Quick Visit", "London", new DateTime())
+                    new Destination("France", "Parisstreet", "5", "Quick Visit", "Paris", new DateTime(2020, 11, 20)),
+                    new Destination("Spain", "Madridstreet", "5", "Quick Visit", "Madrid", new DateTime(2020, 11, 22)),
+                    new Destination("Italy", "Romestreet", "5", "Quick Visit", "Rome", new DateTime(2020, 11, 19)),
+                    new Destination("Netherlands", "Amsterdamstreet", "5", "Quick Visit", "Amsterdam", new DateTime(2020, 11, 18)),
+                    new Destination("Germany", "Berlinstreet", "5", "Quick Visit", "Berlin", new DateTime(2020, 11, 17)),
+                    new Destination("Portugal", "Lisbonstreet", "5", "Quick Visit", "Lisbon", new DateTime(2020, 11, 14)),
+                    new Destination("Belgium", "Brusselsstreet", "5", "Quick Visit", "Brussels", new DateTime(2020, 11, 16)),
+                    new Destination("England", "Londonstreet", "5", "Quick Visit", "London", new DateTime(2020, 11, 30))
                 };
                 travelLists.ForEach(t => t.Itinerary = it);
                 _context.SaveChanges();
