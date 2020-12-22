@@ -37,6 +37,14 @@ namespace Travelore.Data.Repositories
                 .SingleOrDefault(t => t.Id == id);
         }
 
+        public Destination GetDestinationtId(int tlId, int id)
+        {
+            var tl = _travelLists
+                .Include(tl => tl.Itinerary)
+                .SingleOrDefault(t => t.Id == tlId);
+            return tl.Itinerary.SingleOrDefault(i => i.Id == id);
+        }
+
         public IEnumerable<TravelList> GetTravelLists()
         {
             return _travelLists

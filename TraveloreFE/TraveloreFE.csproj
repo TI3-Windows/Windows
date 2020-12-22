@@ -141,6 +141,9 @@
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\AddDestinationDialog.xaml.cs">
+      <DependentUpon>AddDestinationDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>
     </Compile>
@@ -236,6 +239,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CategoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\AddDestinationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,40 +7,44 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:TraveloreFE.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer>
-        <!--<StackPanel.Background>
+    <!--<StackPanel.Background>
                 <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
             </StackPanel.Background>-->
 
-        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"/>
                 <CalendarDatePicker x:Name="endDateDatePicker" Header="Due to"/>
                 -->
-        <!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>-->
-        <!--
+    <!--<Button x:Name="btnAddTask" Content="Add task" Command="{x:Bind vmT.AddTaskCommand}"/>-->
+    <!--
             </StackPanel>-->
+    <Grid>
+        <ListView>
+            <Button Name="btnAddDestination" Click="btnAddDestination_Click">Add Destination</Button>
 
-        <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Travellist">
-                    <Grid>
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Padding="5,1,5,1"
+            <ScrollViewer>
+                <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Travellist">
+                            <Grid>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Padding="5,1,5,1"
                                  Opacity=".75">
-                            <TextBlock Text="{Binding Name}" FontSize="32" FontWeight="Bold" Height="50"/>
-                            <TextBlock Text="{Binding VisitTime}" FontSize="16" Height="32"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="123" Text="{Binding Street}" FontSize="16" Height="32"/>
-                                <TextBlock Width="123" Text="{Binding Nr}" FontSize="16"/>
-                                <TextBlock Width="123" Text="{Binding City}" FontSize="16"/>
-                            </StackPanel>
-                            <TextBlock Text="{Binding Description}" Height="57" FontSize="16"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                                    <TextBlock Text="{Binding Name}" FontSize="32" FontWeight="Bold" Height="50"/>
+                                    <TextBlock Text="{Binding VisitTime}" FontSize="16" Height="32"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="123" Text="{Binding Street}" FontSize="16" Height="32"/>
+                                        <TextBlock Width="123" Text="{Binding Nr}" FontSize="16"/>
+                                        <TextBlock Width="123" Text="{Binding City}" FontSize="16"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Description}" Height="57" FontSize="16"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
         </ListView>
-
-    </ScrollViewer>
+    </Grid>
 
 
 

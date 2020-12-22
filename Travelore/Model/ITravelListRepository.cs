@@ -9,6 +9,7 @@ namespace Travelore.Model
     {
         IEnumerable<TravelList> GetTravelLists();
         TravelList GetTravelListId(int id);
+        Destination GetDestinationtId(int tlId, int id);
         void Add(TravelList travelList);
         void Update(TravelList travelList);
         void Delete(TravelList travelList);

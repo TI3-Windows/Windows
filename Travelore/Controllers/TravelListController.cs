@@ -36,7 +36,13 @@ namespace Travelore.Controllers
         public ActionResult<TravelList> GetTravelList(int id)
         {
             return _travelRepo.GetTravelListId(id);
-        } 
+        }
+
+        [HttpGet("{tlId}/{id}")]
+        public ActionResult<Destination> GetDestination(int tlId, int id)
+        {
+            return _travelRepo.GetDestinationtId(tlId, id);
+        }
 
         [HttpGet("User")]
         public IEnumerable<TravelList> GetTravelListsByUser()
@@ -60,6 +66,19 @@ namespace Travelore.Controllers
             _travelRepo.Add(travellist);
             _travelRepo.SaveChanges();
             return CreatedAtAction(nameof(GetTravelList), new { id = travellist.Id }, travellist);
+        }
+
+        [HttpPost("Destination/{id}")]
+        public ActionResult NewDestination(int id, Destination destination)
+        {
+            var travellist = _travelRepo.GetTravelListId(id);
+            if (travellist == null)
+            {
+                return NotFound();
+            }
+            travellist.AddDestination(destination);
+            _travelRepo.SaveChanges();
+            return CreatedAtAction(nameof(GetDestination), new { tlId = travellist.Id, id = destination.Id }, destination);
         }
     }
 }

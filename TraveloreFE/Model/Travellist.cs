@@ -87,5 +87,10 @@ namespace TraveloreFE.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        public void AddDestination(Destination destination)
+        {
+            Itinerary.Add(destination);
+        }
     }
 }

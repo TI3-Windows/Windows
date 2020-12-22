@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TraveloreFE.Model;
+using TraveloreFE.View.Dialog;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -24,7 +25,9 @@ namespace TraveloreFE.View
     /// </summary>
     public sealed partial class ItineraryView : Page
     {
-        public Travellist Travellist { get; set; }
+        public Travellist Travellist;
+        public ItineraryViewModel Ivm;
+
         public ItineraryView()
         {
             this.InitializeComponent();
@@ -34,6 +37,13 @@ namespace TraveloreFE.View
         {
             Travellist = (Travellist)e.Parameter;
             DataContext = new ItineraryViewModel(Travellist);
+            Ivm = (ItineraryViewModel)DataContext;
+        }
+
+        private void btnAddDestination_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new AddDestinationDialog(Ivm);
+            dialog.ShowAsync();
         }
     }
 }

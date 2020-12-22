@@ -4,12 +4,12 @@ namespace TraveloreFE.Model
 {
     public class Destination
     {
-        private string _name;
-        private string _street;
-        private string _nr;
-        private string _description;
-        private string _city;
-        private DateTime _visitTime;
+        //private string _name;
+        //private string _street;
+        //private string _nr;
+        //private string _description;
+        //private string _city;
+        //private DateTime _visitTime;
 
         public int Id { get; set; }
         public string Name { get; set; }
