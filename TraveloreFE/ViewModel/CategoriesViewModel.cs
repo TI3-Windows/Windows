@@ -15,11 +15,13 @@ namespace TraveloreFE.ViewModel
     public class CategoriesViewModel
     {
         public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<String> CategoryNames { get; set; }
         public Travellist Travellist { get; set; }
         public CategoriesViewModel(Travellist tl)
         {
             Travellist = tl;
             Categories = new ObservableCollection<Category>();
+            CategoryNames = new ObservableCollection<String>();
             loadCategories();
         }
 
@@ -35,6 +37,7 @@ namespace TraveloreFE.ViewModel
             foreach (var c in categoryList)
             {
                 Categories.Add(c);
+                CategoryNames.Add(c.Name);
             }
         }
 
@@ -48,6 +51,23 @@ namespace TraveloreFE.ViewModel
             {
                 Category category = Categories.FirstOrDefault(t => t.Id == id);
                 //task.DoneTask = !task.DoneTask;
+            }
+        }
+
+        // Add A Item WITH Parameters
+        public async System.Threading.Tasks.Task AddNewItem(string name, int amount, string catName)
+        {
+            var item = new Item() { Name = name, Amount = amount, DoneItem = false };
+            var categoryId = Categories.Where(c => c.Name.Equals(catName)).FirstOrDefault().Id;
+            var itemJson = JsonConvert.SerializeObject(item);
+
+            HttpClient httpClient = new HttpClient();
+            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Category/"+categoryId+"/NewItem"),
+                new HttpStringContent(itemJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if (res.IsSuccessStatusCode)
+            {
+                Category cat = Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+                cat.Items.Add(JsonConvert.DeserializeObject<Item>(res.Content.ToString()));
             }
         }
     }

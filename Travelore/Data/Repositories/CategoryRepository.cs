@@ -23,6 +23,12 @@ namespace Travelore.Data.Repositories
             _categories.Add(cat);
         }
 
+        public void AddItem(Item item, int catId)
+        {
+            Category cat = _categories.Where(c => c.Id == catId).FirstOrDefault();
+            cat.AddItem(item);
+        }
+
         public void Delete(Category cat)
         {
             _categories.Remove(cat);
@@ -31,6 +37,22 @@ namespace Travelore.Data.Repositories
         public Category GetbyCategoryId(int id)
         {
             return _categories.Include(c => c.Items).SingleOrDefault(c => c.Id == id);
+        }
+
+        public Item GetByItemId(int id)
+        {
+            Item item = null;
+            foreach(Category cat in _categories)
+            {
+                foreach(Item i in cat.Items)
+                {
+                    if(i.Id == id)
+                    {
+                        item = i;
+                    }
+                }
+            }
+            return item;
         }
 
         public IEnumerable<Category> GetCategories()

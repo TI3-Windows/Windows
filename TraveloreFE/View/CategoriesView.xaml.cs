@@ -8,6 +8,7 @@ using TraveloreFE.Model;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,6 +38,7 @@ namespace TraveloreFE.View
         {
             Travellist = (Travellist)e.Parameter;
             DataContext = new CategoriesViewModel(Travellist);
+            cvm = (CategoriesViewModel)DataContext;
         }
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
@@ -45,10 +47,48 @@ namespace TraveloreFE.View
 
         }
 
-        private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        private async void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            
+            var name = Naam.Text;
+            var amount = Convert.ToInt32(Amount.Text);
+            var categoryName = cmbCategory.SelectedItem.ToString();
+            if (Naam.Text.Length != 0)
+            {
+                if (Amount.Text.Length != 0)
+                {
+                    if (amount != 0)
+                    {
+                        if (cmbCategory.SelectedItem != null)
+                        {
+                            await cvm.AddNewItem(name, amount, categoryName);
+                            Naam.Text = "";
+                            Amount.Text = "";
+                        }
+                        else
+                        {
+                            MessageDialog md = new MessageDialog("Please select a category.");
+                            await md.ShowAsync();
+                        }
+                    }
+                    else
+                    {
+                        MessageDialog md = new MessageDialog("Amount can't be 0!");
+                        await md.ShowAsync();
+                    }
+                }
+                else
+                {
+                    MessageDialog md = new MessageDialog("Amount can't be empty!");
+                    await md.ShowAsync();
+                }
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("Name can't be empty!");
+                await md.ShowAsync();
+            }
         }
+
 
         //private async void Update_Click(object sender, RoutedEventArgs e)
         //{
