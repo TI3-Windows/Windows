@@ -50,7 +50,16 @@ namespace TraveloreFE.View
         private async void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
             var name = Naam.Text;
-            var amount = Convert.ToInt32(Amount.Text);
+            var amount = 1;
+            try
+            {
+                amount = Convert.ToInt32(Amount.Text);
+            }
+            catch (FormatException)
+            {
+                MessageDialog md = new MessageDialog("Enter a valid number");
+                await md.ShowAsync();
+            }
             var categoryName = cmbCategory.SelectedItem.ToString();
             if (Naam.Text.Length != 0)
             {
@@ -63,6 +72,8 @@ namespace TraveloreFE.View
                             await cvm.AddNewItem(name, amount, categoryName);
                             Naam.Text = "";
                             Amount.Text = "";
+                            lvCat.ItemsSource = null;
+                            lvCat.ItemsSource = cvm.Categories;
                         }
                         else
                         {
@@ -85,6 +96,21 @@ namespace TraveloreFE.View
             else
             {
                 MessageDialog md = new MessageDialog("Name can't be empty!");
+                await md.ShowAsync();
+            }
+        }
+
+        private async void btnAddCat_Click(object sender, RoutedEventArgs e)
+        {
+            var name = NaamCat.Text;
+            if (NaamCat.Text.Length != 0)
+            {
+                await cvm.AddNewCat(name);
+                NaamCat.Text = "";
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("Name can't be empty");
                 await md.ShowAsync();
             }
         }

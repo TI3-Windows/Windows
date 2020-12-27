@@ -70,5 +70,20 @@ namespace TraveloreFE.ViewModel
                 cat.Items.Add(JsonConvert.DeserializeObject<Item>(res.Content.ToString()));
             }
         }
+
+        public async System.Threading.Tasks.Task AddNewCat(string name)
+        {
+            var cat = new Category() { Name = name, DoneCat = false, Items = new List<Item>() };
+            var catJson = JsonConvert.SerializeObject(cat);
+            HttpClient httpClient = new HttpClient();
+            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Category/"),
+                new HttpStringContent(catJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if (res.IsSuccessStatusCode)
+            {
+                Category newCat = JsonConvert.DeserializeObject<Category>(res.Content.ToString());
+                Categories.Add(newCat);
+                CategoryNames.Add(newCat.Name);
+            }
+        }
     }
 }

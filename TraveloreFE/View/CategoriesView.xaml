@@ -11,60 +11,65 @@
         <StackPanel>
             <Grid RowSpacing ="5" ColumnSpacing="5" Padding="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="TitleItem" Text="Add a new item" FontSize="20" Grid.Row="0" Grid.ColumnSpan="4"/>
-                <TextBox x:Name="Naam" Header="Name" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-                <TextBox x:Name="Amount" Header="Amount" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
-                <ComboBox x:Name="cmbCategory" ItemsSource="{Binding CategoryNames}" Header="Category" Grid.Row="1" Grid.Column="2" />
-                <Button x:Name="btnAddItem" Content="Add Item" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnAddItem_Click" Grid.Row="1" Grid.Column="3"/>
-                <ListView ItemsSource="{Binding Categories}" Grid.Row="2" Grid.Column="0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.5*"/>
-                                    <RowDefinition Height="*" MaxHeight="400"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="TitleCategory" Text="Add a new Category" FontSize="20" Grid.Row="0" Grid.ColumnSpan="4"/>
+                <TextBox x:Name="NaamCat" Header="Name" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+                <Button x:Name="btnAddCat" Content="Add Category" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnAddCat_Click" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock x:Name="TitleItem" Text="Add a new item" FontSize="20" Grid.Row="2" Grid.ColumnSpan="4"/>
+                <TextBox x:Name="Naam" Header="Name" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
+                <TextBox x:Name="Amount" Header="Amount" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cmbCategory" ItemsSource="{Binding CategoryNames}" Header="Category" Grid.Row="3" Grid.Column="2" />
+                <Button x:Name="btnAddItem" Content="Add Item" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnAddItem_Click" Grid.Row="3" Grid.Column="3"/>
+                <ListView x:Name="lvCat" ItemsSource="{Binding Categories}" Grid.Row="4" Grid.Column="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="*" MaxHeight="400"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
                                     <TextBlock FontSize="50" Grid.Row="0" Text="{Binding Name}"/>
                                 </Grid>
-                            <!--<TextBlock Text="{Binding DoneCat}"/>-->
-                            <ListView ItemsSource="{Binding Items}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid ColumnSpacing="10" RowSpacing="5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding DoneItem}" Click="CheckBox_Click" Content="{Binding Name}"/>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Amount}"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                <!--<TextBlock Text="{Binding DoneCat}"/>-->
+                                <ListView ItemsSource="{Binding Items}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid ColumnSpacing="10" RowSpacing="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding DoneItem}" Click="CheckBox_Click" Content="{Binding Name}"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Amount}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </StackPanel>
     </ScrollViewer>
-    
+
     <!--<Page.DataContext>
         <viewmodel:CategorieViewModel x:Name="vm"/>
     </Page.DataContext>

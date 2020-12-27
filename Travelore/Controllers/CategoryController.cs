@@ -25,6 +25,12 @@ namespace Travelore.Controllers
             return _categoryRepo.GetCategories();
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Category> GetCategoryById(int id)
+        {
+            return _categoryRepo.GetbyCategoryId(id);
+        }
+
         [HttpGet("GetItemById/{id}")]
         public ActionResult<Item> GetItemById(int id)
         {
@@ -52,6 +58,20 @@ namespace Travelore.Controllers
             _categoryRepo.AddItem(item, id);
             _categoryRepo.SaveChanges();
             return CreatedAtAction(nameof(GetItemById), new { id = item.Id }, item);
+        }
+
+        [HttpPost]
+        public ActionResult NewCategory(Category c)
+        {
+            Category cat = new Category()
+            {
+                Name = c.Name,
+                DoneCat = c.DoneCat,
+                Items = c.Items
+            };
+            _categoryRepo.Add(cat);
+            _categoryRepo.SaveChanges();
+            return CreatedAtAction(nameof(GetCategoryById), new { id = cat.Id }, cat);
         }
     }
 }
