@@ -11,11 +11,13 @@ namespace Travelore.Data.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Category> _categories;
+        private readonly DbSet<Item> _items;
 
         public CategoryRepository(ApplicationDbContext context)
         {
             _context = context;
             _categories = context.Categories;
+            _items = context.Items;
         }
 
         public void Add(Category cat)
@@ -25,6 +27,7 @@ namespace Travelore.Data.Repositories
 
         public void AddItem(Item item, int catId)
         {
+            _items.Add(item);
             Category cat = _categories.Where(c => c.Id == catId).FirstOrDefault();
             cat.AddItem(item);
         }
@@ -41,23 +44,24 @@ namespace Travelore.Data.Repositories
 
         public Item GetByItemId(int id)
         {
-            Item item = null;
-            foreach(Category cat in _categories)
-            {
-                foreach(Item i in cat.Items)
-                {
-                    if(i.Id == id)
-                    {
-                        item = i;
-                    }
-                }
-            }
-            return item;
+            return _items.FirstOrDefault(i => i.Id == id);
         }
 
         public IEnumerable<Category> GetCategories()
         {
             return _categories.Include(c => c.Items);
+        }
+
+        public Category GetCategoryByItem(Item item)
+        {
+            foreach(Category cat in _categories)
+            {
+                if (cat.Items.Contains(item))
+                {
+                    return cat;
+                }
+            }
+            return null;
         }
 
         public void SaveChanges()

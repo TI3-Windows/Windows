@@ -54,6 +54,29 @@ namespace TraveloreFE.ViewModel
             }
         }
 
+        public async System.Threading.Tasks.Task UpdateItem(string itemName)
+        {
+            var itemId = 0;
+            Item item = null;
+            foreach(Category cat in Categories)
+            {
+                if(cat.Items.FirstOrDefault(i => i.Name.Equals(itemName)) != null)
+                {
+                    item = cat.Items.FirstOrDefault(i => i.Name.Equals(itemName));
+                    itemId = item.Id;
+                }
+                
+            }
+            var itemIdJson = JsonConvert.SerializeObject(itemId);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Category/UpdateItem/{itemId}";
+            var res = await httpClient.PutAsync(new Uri(url), new HttpStringContent(itemIdJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if (res.IsSuccessStatusCode)
+            {
+                item.DoneItem = !item.DoneItem;
+            }
+        }
+
         // Add A Item WITH Parameters
         public async System.Threading.Tasks.Task AddNewItem(string name, int amount, string catName)
         {

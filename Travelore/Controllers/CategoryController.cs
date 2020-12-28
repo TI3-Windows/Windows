@@ -73,5 +73,16 @@ namespace Travelore.Controllers
             _categoryRepo.SaveChanges();
             return CreatedAtAction(nameof(GetCategoryById), new { id = cat.Id }, cat);
         }
+
+        [HttpPut("UpdateItem/{id}")]
+        public IActionResult UpdateItem(int id)
+        {
+            Item itemUpdate = _categoryRepo.GetByItemId(id);
+            itemUpdate.DoneItem = !itemUpdate.DoneItem;
+            Category cat = _categoryRepo.GetCategoryByItem(itemUpdate);
+            _categoryRepo.Update(cat);
+            _categoryRepo.SaveChanges();
+            return NoContent();
+        }
     }
 }

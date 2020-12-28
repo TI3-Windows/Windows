@@ -16,5 +16,6 @@ namespace Travelore.Model
         void Delete(Category cat);
         void SaveChanges();
         Item GetByItemId(int id);
+        Category GetCategoryByItem(Item item);
     }
 }

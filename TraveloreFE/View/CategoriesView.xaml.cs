@@ -41,10 +41,13 @@ namespace TraveloreFE.View
             cvm = (CategoriesViewModel)DataContext;
         }
 
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        private async void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-
-
+            CheckBox cb = (CheckBox)sender;
+            string itemName = cb.Content.ToString();
+            await cvm.UpdateItem(itemName);
+            //MessageDialog md = new MessageDialog("Checkbox " + itemName + " is clicked");
+            //await md.ShowAsync();
         }
 
         private async void btnAddItem_Click(object sender, RoutedEventArgs e)
@@ -113,6 +116,11 @@ namespace TraveloreFE.View
                 MessageDialog md = new MessageDialog("Name can't be empty");
                 await md.ShowAsync();
             }
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
 
