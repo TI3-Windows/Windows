@@ -19,11 +19,11 @@
     <!--
             </StackPanel>-->
     <Grid>
-        <ListView>
+        <ListView SelectionMode="None">
             <Button Name="btnAddDestination" Click="btnAddDestination_Click">Add Destination</Button>
 
             <ScrollViewer>
-                <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}" >
+                <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Travellist">
                             <Grid>

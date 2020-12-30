@@ -39,15 +39,36 @@ namespace TraveloreFE.View
             Travellist = (Travellist)e.Parameter;
             DataContext = new CategoriesViewModel(Travellist);
             cvm = (CategoriesViewModel)DataContext;
+            var aantalItems = 0;
+            var aantalItemsDone = 0;
+            foreach (Category cat in cvm.Categories)
+            {
+                aantalItems += cat.Items.Count;
+                foreach(Item i in cat.Items)
+                {
+                    if (i.DoneItem)
+                    {
+                        aantalItemsDone++;
+                    }
+                }
+            }
+            progressbar.Maximum = aantalItems;
+            progressbar.Value = aantalItemsDone;
         }
 
         private async void CheckBox_Click(object sender, RoutedEventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
+            if(cb.IsChecked == false)
+            {
+                progressbar.Value--;
+            }
+            else
+            {
+                progressbar.Value++;
+            }
             string itemName = cb.Content.ToString();
             await cvm.UpdateItem(itemName);
-            //MessageDialog md = new MessageDialog("Checkbox " + itemName + " is clicked");
-            //await md.ShowAsync();
         }
 
         private async void btnAddItem_Click(object sender, RoutedEventArgs e)
@@ -77,6 +98,7 @@ namespace TraveloreFE.View
                             Amount.Text = "";
                             lvCat.ItemsSource = null;
                             lvCat.ItemsSource = cvm.Categories;
+                            progressbar.Maximum++;
                         }
                         else
                         {

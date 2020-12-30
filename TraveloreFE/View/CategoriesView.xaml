@@ -9,6 +9,7 @@
 
     <ScrollViewer>
         <StackPanel>
+            <ProgressBar x:Name="progressbar" Height="20"></ProgressBar>
             <Grid RowSpacing ="5" ColumnSpacing="5" Padding="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -69,23 +70,4 @@
             </Grid>
         </StackPanel>
     </ScrollViewer>
-
-    <!--<Page.DataContext>
-        <viewmodel:CategorieViewModel x:Name="vm"/>
-    </Page.DataContext>
-    <ScrollViewer>
-        <StackPanel>
-            <ListView x:Name="lvCategories" ItemsSource="{x:Bind vm.Categories}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Category">
-                        <StackPanel>
-                            <TextBlock FontSize="48" Text="{x:Bind Name}"/>
-                            <TextBlock FontSize="24" Text="{x:Bind DoneCat}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
-    </ScrollViewer>-->
-
 </Page>
