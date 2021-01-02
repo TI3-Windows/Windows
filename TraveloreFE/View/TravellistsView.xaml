@@ -15,7 +15,7 @@
             <!--<StackPanel.Background>
                 <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
             </StackPanel.Background>-->
-            <Grid>
+            <Grid RowSpacing="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="3*"/>

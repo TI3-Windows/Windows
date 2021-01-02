@@ -10,7 +10,7 @@
     <Grid>
         <NavigationView x:Name="navView" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
             <NavigationView.Header>
-                <Grid>
+                <Grid Background="White" BorderBrush="Black" BorderThickness="1" Padding="10" Margin="0,0,10,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -19,16 +19,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="HeaderPaneText" Grid.Row="0" Grid.Column="0" FontSize="28"/>
-                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE8D4;" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE8D4;" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="10" Background="White" BorderBrush="Black" BorderThickness="1">
                         <Button.Flyout>
                             <Flyout>
-                                <StackPanel Orientation="Vertical" Margin="5" Padding="5">
-                                    <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Spacing="10">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="Logged in as : "/>
                                         <TextBlock Text="{Binding FirstName}"/>
-                                        <TextBlock Text=" "/>
                                         <TextBlock Text="{Binding LastName}"/>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding Email}"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="E-mail : "/>
+                                        <TextBlock Text="{Binding Email}"/>
+                                    </StackPanel>
                                     <Button Content="Logout" Click="LogoutButton_Click"/>
                                 </StackPanel>
                             </Flyout>

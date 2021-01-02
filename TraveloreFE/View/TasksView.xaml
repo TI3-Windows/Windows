@@ -13,8 +13,8 @@
     <Page.Resources>
         <local1:BoolToSymbolConverter x:Key="myConverter"/>
     </Page.Resources>
-    
-        <Grid>
+
+    <Grid Background="#ebf3ff">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -25,16 +25,12 @@
 
             <ScrollViewer Grid.Row="0" Grid.Column="0">
                 <StackPanel >
-                    <ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
-                        <!--<ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged">-->
-                        <ListView.ItemTemplate>
+                <ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
+                    <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding DoneTask, Converter={StaticResource myConverter}}" />
+                            <StackPanel Orientation="Horizontal" Spacing="10"> 
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding DoneTask, Converter={StaticResource myConverter}}"/>
                                 <TextBlock FontSize="11" Text="{Binding Description}"/>
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73A;"/>
-                                <CheckBox Content="Done" IsChecked="{Binding DoneTask}"/>
                             </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

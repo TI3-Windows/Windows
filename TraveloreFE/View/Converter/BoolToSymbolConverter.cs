@@ -11,11 +11,7 @@ namespace TraveloreFE.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if((Boolean)value)
-            {
-                return System.Convert.ToString("&#xE73A;");
-            }
-            return System.Convert.ToString("&#xE739;");
+            return (bool)value ? "\uE73A" : "\uE739" ;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
