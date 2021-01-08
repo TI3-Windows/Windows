@@ -80,5 +80,26 @@ namespace Travelore.Controllers
             _travelRepo.SaveChanges();
             return CreatedAtAction(nameof(GetDestination), new { tlId = travellist.Id, id = destination.Id }, destination);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTravellist(int id)
+        {
+            TravelList tl = _travelRepo.GetTravelListId(id);
+            _travelRepo.Delete(tl);
+            _travelRepo.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("Destination/{tlid}/{id}")]
+        public IActionResult DeleteDestination(int tlid, int id)
+        {
+            TravelList tl = _travelRepo.GetTravelListId(tlid);
+            Destination d = _travelRepo.GetDestinationtId(tlid, id);
+
+            tl.Itinerary.Remove(d);
+
+            _travelRepo.SaveChanges();
+            return NoContent();
+        }
     }
 }

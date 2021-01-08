@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Windows.Input;
 using TraveloreFE.Model;
+using TraveloreFE.ViewModel.Commands;
 using Windows.Web.Http;
 using HttpClient = Windows.Web.Http.HttpClient;
 
@@ -16,10 +18,13 @@ namespace TraveloreFE.ViewModel
         public ObservableCollection<Travellist> Travellists { get; set; }
         public Travellist Travellist { get; set; }
 
+        public ICommand DeleteTravellistCommand { get; set; }
+
         public TravellistViewModel(/*User us*/)
         {
             //User = us;
             Travellists = new ObservableCollection<Travellist>();
+            DeleteTravellistCommand = new DeleteTravellistCommand(this);
             loadTravellists();
         }
 
@@ -47,6 +52,23 @@ namespace TraveloreFE.ViewModel
             if(res.IsSuccessStatusCode)
             {
                 Travellists.Add(JsonConvert.DeserializeObject<Travellist>(res.Content.ToString()));
+            }
+        }
+
+        // Delete A Travellist
+        public async System.Threading.Tasks.Task DeleteSelectedTravellist(int id)
+        {
+            var taskIdJson = JsonConvert.SerializeObject(id);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Travellist/{id}";
+            var res = await httpClient.DeleteAsync(new Uri(url));
+            if (res.IsSuccessStatusCode)
+            {
+                var deletedTravellist = Travellists.SingleOrDefault((t) => t.Id == id);
+                if (deletedTravellist != null)
+                {
+                    Travellists.Remove(deletedTravellist);
+                }
             }
         }
     }

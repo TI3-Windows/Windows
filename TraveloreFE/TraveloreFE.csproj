@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Commands\DeleteDestinationCommand.cs" />
+    <Compile Include="ViewModel\Commands\DeleteTravellistCommand.cs" />
     <Compile Include="View\Converter\BoolToSymbolConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

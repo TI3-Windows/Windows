@@ -25,6 +25,8 @@ namespace TraveloreFE.View
     /// </summary>
     public sealed partial class ItineraryView : Page
     {
+
+        public Destination selectedDestionation;
         public Travellist Travellist;
         public ItineraryViewModel Ivm;
 
@@ -44,6 +46,22 @@ namespace TraveloreFE.View
         {
             var dialog = new AddDestinationDialog(Ivm);
             dialog.ShowAsync();
+        }
+
+        private void lvDestinations_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            travellistFlyouts.ShowAt(listView, e.GetPosition(listView));
+            var a = ((FrameworkElement)e.OriginalSource).DataContext;
+            selectedDestionation = (Destination)a;
+        }
+
+        private async void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedDestionation != null)
+            {
+                Ivm.DeleteDestinationCommand.Execute(selectedDestionation.Id);
+            }
         }
     }
 }
