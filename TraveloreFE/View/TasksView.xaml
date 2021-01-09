@@ -15,63 +15,63 @@
     </Page.Resources>
 
     <Grid Background="#ebf3ff">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="0.5*"/>
-            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
 
-            <ScrollViewer Grid.Row="0" Grid.Column="0">
-                <StackPanel >
+        <ScrollViewer Grid.Row="0" Grid.Column="0">
+            <StackPanel >
                 <ListView x:Name="lvTasks" ItemsSource="{Binding Tasks}" SelectionChanged="lvTasks_SelectionChanged" RightTapped="lvTasks_RightTapped">
                     <ListView.ItemTemplate>
-                            <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="10"> 
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding DoneTask, Converter={StaticResource myConverter}}"/>
                                 <TextBlock FontSize="11" Text="{Binding Description}"/>
                             </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.Resources>
-                            <MenuFlyout x:Name="allContactsMenuFlyout">
-                                <MenuFlyout.Items>
-                                    <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click">
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Resources>
+                        <MenuFlyout x:Name="allContactsMenuFlyout">
+                            <MenuFlyout.Items>
+                                <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click">
                                     <MenuFlyoutItem.Icon>
                                         <SymbolIcon Symbol="Remove"/>
                                     </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click">
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click">
                                     <MenuFlyoutItem.Icon>
                                         <SymbolIcon Symbol="Accept"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
                             </MenuFlyout.Items>
-                            </MenuFlyout>
-                        </ListView.Resources>
-                    </ListView>
-                </StackPanel>
-            </ScrollViewer>
-            
-            <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="*" MaxHeight="400"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                        </MenuFlyout>
+                    </ListView.Resources>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="*" MaxHeight="400"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-                <TextBlock x:Name="TitleTask" Text="Add a new task" FontSize="20" Grid.Row="0" Grid.ColumnSpan="3"/>
+            <TextBlock x:Name="TitleTask" Text="Add a new task" FontSize="20" Grid.Row="0" Grid.ColumnSpan="3"/>
             <TextBox x:Name="Description" Header="Description" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
             <Button x:Name="btnAddTask" Content="Add task" Click="btnAddTask_Click"  Grid.Row="1" Grid.Column="1"/>
-            </Grid>
-            
         </Grid>
-        
-   
-    
+
+    </Grid>
+
+
+
     <!--<Page.DataContext>
         <viewmodel:TaskViewModel x:Name="vmT"/>
     </Page.DataContext>
@@ -81,7 +81,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Task">
                         <StackPanel>
-                            --><!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>--><!--
+                            -->
+    <!--<TextBlock FontSize="30" Text="{x:Bind Id}"/>-->
+    <!--
                             <TextBlock FontSize="11" Text="{x:Bind Description}"/>
                             <TextBlock FontSize="10" Text="{x:Bind EndDate}"/>
                             <TextBlock FontSize="8" Text="{x:Bind DoneTask}"/>

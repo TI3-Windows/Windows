@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using TraveloreFE.Model;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
@@ -21,16 +20,24 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TraveloreFE.View.Dialog
 {
-    public sealed partial class AddDestinationDialog : ContentDialog
+    public sealed partial class UpdateDestinationDialog : ContentDialog
     {
         public ItineraryViewModel Ivm;
-
-        public AddDestinationDialog(ItineraryViewModel ivm)
+        public Destination Destination;
+        public UpdateDestinationDialog(ItineraryViewModel ivm, Destination destination)
         {
             this.InitializeComponent();
+            Destination = destination;
             Ivm = ivm;
+           
+            NameTextBox.Text = Destination.Name;
+            StreetTextBox.Text = Destination.Street;
+            NrTextBox.Text = Destination.Nr;
+            CityTextBox.Text = Destination.City;
+            DescriptionTextBox.Text = Destination.Description;
+            DatePicker.Date = Destination.VisitTime.Date;
+            TimePicker.Time = Destination.VisitTime.TimeOfDay;
         }
-
 
         private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
@@ -65,7 +72,7 @@ namespace TraveloreFE.View.Dialog
                     Description = DescriptionTextBox.Text,
                     VisitTime = new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, 00)
                 };
-                await Ivm.AddNewDestination(destination);
+                await Ivm.UpdateSelectedDestination(Destination.Id ,destination);
                 //lvDestinations.ItemsSource = null;
                 //lvDestinations.ItemsSource = Ivm.Itinerary;
             }

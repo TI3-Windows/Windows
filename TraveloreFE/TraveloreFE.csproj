@@ -146,6 +146,9 @@
     <Compile Include="View\Dialog\AddDestinationDialog.xaml.cs">
       <DependentUpon>AddDestinationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\UpdateDestinationDialog.xaml.cs">
+      <DependentUpon>UpdateDestinationDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>
     </Compile>
@@ -245,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\AddDestinationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\UpdateDestinationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

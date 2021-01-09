@@ -45,7 +45,7 @@ namespace TraveloreFE.View
 
         private async void btnAddDestination_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new AddDestinationDialog(Ivm, lvDestinations);
+            var dialog = new AddDestinationDialog(Ivm);
             await dialog.ShowAsync();
          
         }
@@ -63,6 +63,14 @@ namespace TraveloreFE.View
             if (selectedDestionation != null)
             {
                 Ivm.DeleteDestinationCommand.Execute(selectedDestionation.Id);
+            }
+        }
+        private async void Update_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedDestionation != null)
+            {
+                UpdateDestinationDialog dialog = new UpdateDestinationDialog(Ivm, selectedDestionation);
+                await dialog.ShowAsync();
             }
         }
 

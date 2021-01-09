@@ -49,6 +49,11 @@
                                         <SymbolIcon Symbol="Remove"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
+                                <MenuFlyoutItem x:Name="Update" Text="Update" Click="Update_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <SymbolIcon Symbol="Accept"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
                             </MenuFlyout.Items>
                         </MenuFlyout>
                     </ListView.Resources>

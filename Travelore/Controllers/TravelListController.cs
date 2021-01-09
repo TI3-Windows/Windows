@@ -101,5 +101,27 @@ namespace Travelore.Controllers
             _travelRepo.SaveChanges();
             return NoContent();
         }
+
+        [HttpPut("Destination/{tlid}/{id}")]
+        public IActionResult UpdateDestination(int tlid, int id, Destination destination)
+        {
+            TravelList tl = _travelRepo.GetTravelListId(tlid);
+            var d = tl.Itinerary.FirstOrDefault(i => i.Id == id);
+
+            if(tl == null || d == null)
+            {
+                return NotFound();
+            }
+            
+            d.Name = destination.Name;
+            d.Street = destination.Street;
+            d.Nr = destination.Nr;
+            d.City = destination.City;
+            d.Description = destination.Description;
+            d.VisitTime = destination.VisitTime;
+            _travelRepo.Update(tl);
+            _travelRepo.SaveChanges();
+            return NoContent();
+        }
     }
 }
