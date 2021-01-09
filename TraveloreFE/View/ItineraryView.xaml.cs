@@ -8,6 +8,7 @@ using TraveloreFE.View.Dialog;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,16 +39,15 @@ namespace TraveloreFE.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Travellist = (Travellist)e.Parameter;
-            DataContext = new ItineraryViewModel(Travellist);
+            DataContext = new ItineraryViewModel(Travellist, lvDestinations);
             Ivm = (ItineraryViewModel)DataContext;
         }
 
         private async void btnAddDestination_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new AddDestinationDialog(Ivm);
+            var dialog = new AddDestinationDialog(Ivm, lvDestinations);
             await dialog.ShowAsync();
-            lvDestinations.ItemsSource = null;
-            lvDestinations.ItemsSource = Ivm.Itinerary;
+         
         }
 
         private void lvDestinations_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -62,11 +62,9 @@ namespace TraveloreFE.View
         {
             if (selectedDestionation != null)
             {
-               Ivm.DeleteDestinationCommand.Execute(selectedDestionation.Id);
-               lvDestinations.ItemsSource = null;
-               lvDestinations.ItemsSource = Ivm.Itinerary;
-                
+                Ivm.DeleteDestinationCommand.Execute(selectedDestionation.Id);
             }
         }
+
     }
 }

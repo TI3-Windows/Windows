@@ -54,7 +54,7 @@ namespace TraveloreFE.View
             }
             progressbar.Maximum = aantalItems;
             progressbar.Value = aantalItemsDone;
-            double percentageDone = 0;
+            double percentageDone = 100;
             if (aantalItems != 0)
             {
                 percentageDone = progressbar.Value / progressbar.Maximum * 100;

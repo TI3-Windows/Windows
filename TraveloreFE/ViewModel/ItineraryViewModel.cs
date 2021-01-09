@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 using TraveloreFE.Model;
 using TraveloreFE.ViewModel.Commands;
 using Windows.ApplicationModel.Store.LicenseManagement;
+using Windows.UI.Xaml.Controls;
 using Windows.Web.Http;
 
 namespace TraveloreFE.ViewModel
@@ -17,19 +19,26 @@ namespace TraveloreFE.ViewModel
     {
         public Travellist Travellist { get; set; }
         public List<Destination> Itinerary { get; set; }
+        public ListView LvDestinations { get; set; }
 
         public ICommand DeleteDestinationCommand  { get; set; }
 
-        public ItineraryViewModel(Travellist tl)
+        public ItineraryViewModel(Travellist tl, ListView lv)
         {
             Travellist = tl;
             DeleteDestinationCommand = new DeleteDestinationCommand(this);
-            //Array.Sort<Destination>(tl.Itinerary.ToArray(), new Comparison<Destination>(
-            //    (i1, i2) => i2.VisitTime.CompareTo(i1.VisitTime)));
+            LvDestinations = lv;
 
-            tl.Itinerary.Sort(new Comparison<Destination>(
+            this.SortItineraryByDate();
+        }
+
+        public void SortItineraryByDate()
+        {
+            List<Destination> destinations = Travellist.Itinerary;
+            destinations.Sort(new Comparison<Destination>(
                 (i1, i2) => i1.VisitTime.CompareTo(i2.VisitTime)));
-            Itinerary = tl.Itinerary;
+            Travellist.Itinerary = destinations;
+            Itinerary = destinations;
         }
 
         public async System.Threading.Tasks.Task AddNewDestination(Destination destination)
@@ -42,6 +51,9 @@ namespace TraveloreFE.ViewModel
             if (res.IsSuccessStatusCode)
             {
                 Travellist.AddDestination(JsonConvert.DeserializeObject<Destination>(res.Content.ToString()));
+                this.SortItineraryByDate();
+                LvDestinations.ItemsSource = null;
+                LvDestinations.ItemsSource = Itinerary;
             }
         }
 
@@ -59,6 +71,8 @@ namespace TraveloreFE.ViewModel
                 if (deletedDestination != null)
                 {
                     Itinerary.Remove(deletedDestination);
+                    LvDestinations.ItemsSource = null;
+                    LvDestinations.ItemsSource = Itinerary;
                 }
             }
         }

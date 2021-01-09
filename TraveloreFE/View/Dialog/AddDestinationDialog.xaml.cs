@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using TraveloreFE.Model;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,30 +24,63 @@ namespace TraveloreFE.View.Dialog
     public sealed partial class AddDestinationDialog : ContentDialog
     {
         public ItineraryViewModel Ivm;
-        public AddDestinationDialog(ItineraryViewModel ivm)
+        public ListView lvDestinations;
+
+        public AddDestinationDialog(ItineraryViewModel ivm, ListView lv)
         {
             this.InitializeComponent();
             Ivm = ivm;
+            lvDestinations = lv;
         }
+     
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            var date = DatePicker.Date.Value;
-            var time = TimePicker.Time;
-            var destination = new Destination()
-            {
-                Name = NameTextBox.Text,
-                Street = StreetTextBox.Text,
-                Nr = NrTextBox.Text,
-                City = CityTextBox.Text,
-                Description = DescriptionTextBox.Text,
-                VisitTime = new DateTime(date.Year, date.Month, date.Day, time.Hours,time.Minutes, 00)
-            };
+                try
+                {
+                    DateTimeOffset date;
+                    TimeSpan time;
+                    try
+                    {
+                        date = DatePicker.Date.Value;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ArgumentException("Date cannot be empty");
+                    }
 
-           Ivm.AddNewDestination(destination);
-           
+                    try
+                    {
+                        time = TimePicker.Time;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ArgumentException("Time cannot be empty");
+                    }
 
+                    var destination = new Destination()
+                    {
+                        Name = NameTextBox.Text,
+                        Street = StreetTextBox.Text,
+                        Nr = NrTextBox.Text,
+                        City = CityTextBox.Text,
+                        Description = DescriptionTextBox.Text,
+                        VisitTime = new DateTime(date.Year, date.Month, date.Day, time.Hours, time.Minutes, 00)
+                    };
+                    await Ivm.AddNewDestination(destination);
+                    //lvDestinations.ItemsSource = null;
+                    //lvDestinations.ItemsSource = Ivm.Itinerary;
+            }
+                catch (ArgumentException ex)
+                {
+                    MessageDialog md = new MessageDialog(ex.Message.ToString());
+                    await md.ShowAsync();
+                    await this.ShowAsync();
+                }
+                catch (Exception e)
+                {
 
+                }
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
