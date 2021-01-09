@@ -9,6 +9,7 @@
 
     <ScrollViewer>
         <StackPanel>
+            <TextBlock x:Name="ItemsDone" HorizontalAlignment="Center" FontSize="20"/>
             <ProgressBar x:Name="progressbar" Height="20"></ProgressBar>
             <Grid RowSpacing ="5" ColumnSpacing="5" Padding="5">
                 <Grid.RowDefinitions>

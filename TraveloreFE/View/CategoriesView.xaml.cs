@@ -54,6 +54,8 @@ namespace TraveloreFE.View
             }
             progressbar.Maximum = aantalItems;
             progressbar.Value = aantalItemsDone;
+            var percentageDone = progressbar.Value / progressbar.Maximum * 100;
+            ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
         }
 
         private async void CheckBox_Click(object sender, RoutedEventArgs e)
@@ -62,10 +64,14 @@ namespace TraveloreFE.View
             if(cb.IsChecked == false)
             {
                 progressbar.Value--;
+                var percentageDone = progressbar.Value / progressbar.Maximum * 100;
+                ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
             }
             else
             {
                 progressbar.Value++;
+                var percentageDone = progressbar.Value / progressbar.Maximum * 100;
+                ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
             }
             string itemName = cb.Content.ToString();
             await cvm.UpdateItem(itemName);
@@ -99,6 +105,8 @@ namespace TraveloreFE.View
                             lvCat.ItemsSource = null;
                             lvCat.ItemsSource = cvm.Categories;
                             progressbar.Maximum++;
+                            var percentageDone = progressbar.Value / progressbar.Maximum * 100;
+                            ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
                         }
                         else
                         {
