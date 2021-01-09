@@ -26,7 +26,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Choose your trip!" FontSize="40" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
                 <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <GridView x:Name="gvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="gvTravellist_SelectionChanged">
+                    <GridView x:Name="gvTravellists" ItemsSource="{x:Bind vmTL.Travellists}" SelectionChanged="gvTravellist_SelectionChanged" RightTapped="lvTravellists_RightTapped">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:Travellist">
                             <StackPanel Width="264" Height="48" Padding="12" Orientation="Horizontal" AutomationProperties.Name="{x:Bind Name}">
@@ -35,7 +35,18 @@
                             </StackPanel>
                         </DataTemplate>
                     </GridView.ItemTemplate>
-                    <GridView.ItemsPanel>
+                        <GridView.Resources>
+                            <MenuFlyout x:Name="travellistFlyouts">
+                                <MenuFlyout.Items>
+                                    <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <SymbolIcon Symbol="Remove"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout.Items>
+                            </MenuFlyout>
+                        </GridView.Resources>
+                        <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" HorizontalAlignment="Center"/>
                         </ItemsPanelTemplate>

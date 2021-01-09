@@ -12,34 +12,34 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
-    <ListView>
-        <StackPanel Orientation="Horizontal">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Name:" Width="118"/>
             <TextBox x:Name="NameTextBox" Width="226" TabIndex="0"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Street:" Width="118" />
             <TextBox x:Name="StreetTextBox" Width="226" TabIndex="1"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Nr:" Width="118" />
             <TextBox x:Name="NrTextBox" Width="226" TabIndex="2"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="City:" Width="118" />
             <TextBox x:Name="CityTextBox" Width="226" TabIndex="3"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Description:" Width="118" />
             <TextBox x:Name="DescriptionTextBox"  Width="226" TabIndex="4"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Date:" Width="118"/>
             <CalendarDatePicker x:Name="DatePicker" PlaceholderText="Pick a date" TabIndex="5"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Time:" Width="118" />
             <TimePicker x:Name="TimePicker" TabIndex="6"/>
         </StackPanel>
-    </ListView>
+    </StackPanel>
 </ContentDialog>

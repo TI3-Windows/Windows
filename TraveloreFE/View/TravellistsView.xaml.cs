@@ -66,5 +66,21 @@ namespace TraveloreFE.View
                 await md.ShowAsync();
             }
         }
+
+        private void lvTravellists_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            GridView listView = (GridView)sender;
+            travellistFlyouts.ShowAt(listView, e.GetPosition(listView));
+            var a = ((FrameworkElement)e.OriginalSource).DataContext;
+            selectedTravellist = (Travellist)a;
+        }
+
+        private async void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedTravellist != null)
+            {
+                tvm.DeleteTravellistCommand.Execute(selectedTravellist.Id);
+            }
+        }
     }
 }
