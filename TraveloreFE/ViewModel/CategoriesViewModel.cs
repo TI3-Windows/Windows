@@ -33,12 +33,15 @@ namespace TraveloreFE.ViewModel
 
 
             var categoryList = Travellist.Categories;
-
-            foreach (var c in categoryList)
+            if (categoryList != null)
             {
-                Categories.Add(c);
-                CategoryNames.Add(c.Name);
+                foreach (var c in categoryList)
+                {
+                    Categories.Add(c);
+                    CategoryNames.Add(c.Name);
+                }
             }
+
         }
 
         public async System.Threading.Tasks.Task UpdateSelectedCategory(int id)
@@ -58,14 +61,14 @@ namespace TraveloreFE.ViewModel
         {
             var itemId = 0;
             Item item = null;
-            foreach(Category cat in Categories)
+            foreach (Category cat in Categories)
             {
-                if(cat.Items.FirstOrDefault(i => i.Name.Equals(itemName)) != null)
+                if (cat.Items.FirstOrDefault(i => i.Name.Equals(itemName)) != null)
                 {
                     item = cat.Items.FirstOrDefault(i => i.Name.Equals(itemName));
                     itemId = item.Id;
                 }
-                
+
             }
             var itemIdJson = JsonConvert.SerializeObject(itemId);
             HttpClient httpClient = new HttpClient();
@@ -85,7 +88,7 @@ namespace TraveloreFE.ViewModel
             var itemJson = JsonConvert.SerializeObject(item);
 
             HttpClient httpClient = new HttpClient();
-            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Category/"+categoryId+"/NewItem"),
+            var res = await httpClient.PostAsync(new Uri("http://localhost:5001/api/Category/" + categoryId + "/NewItem"),
                 new HttpStringContent(itemJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
             if (res.IsSuccessStatusCode)
             {

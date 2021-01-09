@@ -59,6 +59,8 @@ namespace TraveloreFE.View
             {
                 await tvm.AddNewTravellist(travellist);
                 TravellistName.Text = "";
+                gvTravellists.ItemsSource = null;
+                gvTravellists.ItemsSource = tvm.Travellists;
             }
             else
             {
@@ -80,6 +82,8 @@ namespace TraveloreFE.View
             if (selectedTravellist != null)
             {
                 tvm.DeleteTravellistCommand.Execute(selectedTravellist.Id);
+                gvTravellists.ItemsSource = null;
+                gvTravellists.ItemsSource = tvm.Travellists;
             }
         }
     }

@@ -42,10 +42,12 @@ namespace TraveloreFE.View
             Ivm = (ItineraryViewModel)DataContext;
         }
 
-        private void btnAddDestination_Click(object sender, RoutedEventArgs e)
+        private async void btnAddDestination_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new AddDestinationDialog(Ivm);
-            dialog.ShowAsync();
+            await dialog.ShowAsync();
+            lvDestinations.ItemsSource = null;
+            lvDestinations.ItemsSource = Ivm.Itinerary;
         }
 
         private void lvDestinations_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -60,7 +62,10 @@ namespace TraveloreFE.View
         {
             if (selectedDestionation != null)
             {
-                Ivm.DeleteDestinationCommand.Execute(selectedDestionation.Id);
+               Ivm.DeleteDestinationCommand.Execute(selectedDestionation.Id);
+               lvDestinations.ItemsSource = null;
+               lvDestinations.ItemsSource = Ivm.Itinerary;
+                
             }
         }
     }

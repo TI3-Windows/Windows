@@ -23,7 +23,7 @@
             <Button Name="btnAddDestination" Click="btnAddDestination_Click">Add Destination</Button>
 
             <ScrollViewer>
-                <ListView x:Name="lvTravellists" ItemsSource="{Binding Itinerary}" SelectionMode="None" RightTapped="lvDestinations_RightTapped">
+                <ListView x:Name="lvDestinations" ItemsSource="{Binding Itinerary}" RightTapped="lvDestinations_RightTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Travellist">
                             <Grid>

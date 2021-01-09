@@ -42,7 +42,8 @@ namespace TraveloreFE.View.Dialog
                 VisitTime = new DateTime(date.Year, date.Month, date.Day, time.Hours,time.Minutes, 00)
             };
 
-            Ivm.AddNewDestination(destination);
+           Ivm.AddNewDestination(destination);
+           
 
 
         }
