@@ -15,23 +15,23 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Name:" Width="118"/>
-            <TextBox x:Name="NameTextBox" Width="226" TabIndex="0"/>
+            <TextBox x:Name="NameTextBox" PlaceholderText="Name" Width="226" TabIndex="0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Street:" Width="118" />
-            <TextBox x:Name="StreetTextBox" Width="226" TabIndex="1"/>
+            <TextBox x:Name="StreetTextBox" PlaceholderText="Street" Width="226" TabIndex="1"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Nr:" Width="118" />
-            <TextBox x:Name="NrTextBox" Width="226" TabIndex="2"/>
+            <TextBox x:Name="NrTextBox" PlaceholderText="Nr" Width="226" TabIndex="2"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="City:" Width="118" />
-            <TextBox x:Name="CityTextBox" Width="226" TabIndex="3"/>
+            <TextBox x:Name="CityTextBox" PlaceholderText="City" Width="226" TabIndex="3"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Description:" Width="118" />
-            <TextBox x:Name="DescriptionTextBox"  Width="226" TabIndex="4"/>
+            <TextBox x:Name="DescriptionTextBox" PlaceholderText="Description"  Width="226" TabIndex="4"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Padding="10">
             <TextBlock Text="Date:" Width="118"/>

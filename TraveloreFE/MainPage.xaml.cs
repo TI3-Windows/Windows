@@ -68,7 +68,7 @@ namespace TraveloreFE
 
         private void NavigationViewMap_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            mainContent.Navigate(typeof(MapRoute));
+            mainContent.Navigate(typeof(MapRoute), Travellist);
             HeaderPaneText.Text = "Map";
         }
 

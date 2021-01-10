@@ -26,7 +26,7 @@ namespace TraveloreFE.Model
             get { return _name; }
             set
             { 
-                if(value == "")
+                if(string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Name cannot be empty!");
                 }
@@ -39,7 +39,7 @@ namespace TraveloreFE.Model
             get { return _street; }
             set 
             {
-                if (value == "")
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Street cannot be empty!");
                 }
@@ -52,7 +52,7 @@ namespace TraveloreFE.Model
             get { return _nr; }
             set
             {
-                if (value == "")
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Nr cannot be empty!");
                 }
@@ -66,7 +66,7 @@ namespace TraveloreFE.Model
             get { return _description; }
             set 
             {
-                if (value == "")
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Description cannot be empty!");
                 }
@@ -79,7 +79,7 @@ namespace TraveloreFE.Model
             get { return _city; }
             set
             {
-                if (value == "")
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("City cannot be empty!");
                 }

@@ -92,5 +92,17 @@ namespace TraveloreFE.Model
         {
             Itinerary.Add(destination);
         }
+
+        public void SortItineraryByDate()
+        {
+            List<Destination> destinations = Itinerary;
+            if (destinations != null)
+            {
+                destinations.Sort(new Comparison<Destination>(
+                                (i1, i2) => i1.VisitTime.CompareTo(i2.VisitTime)));
+            }
+            Itinerary = destinations;
+
+        }
     }
 }

@@ -29,21 +29,22 @@ namespace TraveloreFE.ViewModel
             DeleteDestinationCommand = new DeleteDestinationCommand(this);
             LvDestinations = lv;
 
-            this.SortItineraryByDate();
+            Travellist.SortItineraryByDate();
+            Itinerary = Travellist.Itinerary;
         }
 
-        public void SortItineraryByDate()
-        {
-            List<Destination> destinations = Travellist.Itinerary;
-            if (destinations != null)
-            {
-                destinations.Sort(new Comparison<Destination>(
-                                (i1, i2) => i1.VisitTime.CompareTo(i2.VisitTime)));
-            }
-            Travellist.Itinerary = destinations;
-            Itinerary = destinations;
+        //public void SortItineraryByDate()
+        //{
+        //    List<Destination> destinations = Travellist.Itinerary;
+        //    if (destinations != null)
+        //    {
+        //        destinations.Sort(new Comparison<Destination>(
+        //                        (i1, i2) => i1.VisitTime.CompareTo(i2.VisitTime)));
+        //    }
+        //    Travellist.Itinerary = destinations;
+        //    Itinerary = destinations;
 
-        }
+        //}
 
         public async System.Threading.Tasks.Task AddNewDestination(Destination destination)
         {
@@ -55,7 +56,9 @@ namespace TraveloreFE.ViewModel
             if (res.IsSuccessStatusCode)
             {
                 Travellist.AddDestination(JsonConvert.DeserializeObject<Destination>(res.Content.ToString()));
-                this.SortItineraryByDate();
+                //this.SortItineraryByDate();
+                Travellist.SortItineraryByDate();
+                Itinerary = Travellist.Itinerary;
                 LvDestinations.ItemsSource = null;
                 LvDestinations.ItemsSource = Itinerary;
             }
@@ -99,7 +102,8 @@ namespace TraveloreFE.ViewModel
                 d.City = destination.City;
                 d.Description = destination.Description;
                 d.VisitTime = destination.VisitTime;
-                this.SortItineraryByDate();
+                Travellist.SortItineraryByDate();
+                Itinerary = Travellist.Itinerary;
                 LvDestinations.ItemsSource = null;
                 LvDestinations.ItemsSource = Itinerary;
             }
