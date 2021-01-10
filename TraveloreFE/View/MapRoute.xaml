@@ -19,6 +19,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <Button x:Name="btnGoBack" Click="btnGoBack_Click" Content="Go back to Itinerary" Margin="388,4,0,0" VerticalAlignment="Top"/>
+
         <Custom:MapControl x:Name="MCMain" Margin="0,38,0,0"/>
     </Grid>
 </Page>

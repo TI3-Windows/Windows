@@ -53,6 +53,11 @@ namespace TraveloreFE.View
             CalcRoute();
         }
 
+        private async void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItineraryView), Travellist);
+        }
+
         private async void CalcRoute()
         {
             if (Destination != null)

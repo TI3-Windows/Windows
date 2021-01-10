@@ -47,7 +47,22 @@ namespace TraveloreFE.View
         {
             var dialog = new AddDestinationDialog(Ivm);
             await dialog.ShowAsync();
-         
+
+        }
+
+     
+        private async void btnShowMap_Click(object sender, RoutedEventArgs e)
+        {
+            if (Travellist.Itinerary.Count == 0)
+            {
+                MessageDialog dialog = new MessageDialog("There are no destinations to display yet.");
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(MapRoute), Travellist);
+
+            }
         }
 
         private void lvDestinations_RightTapped(object sender, RightTappedRoutedEventArgs e)

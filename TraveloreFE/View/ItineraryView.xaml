@@ -20,8 +20,11 @@
             </StackPanel>-->
     <Grid>
         <ListView SelectionMode="None">
-            <Button Name="btnAddDestination" Click="btnAddDestination_Click">Add Destination</Button>
-
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnAddDestination" Click="btnAddDestination_Click" Margin="10">Add Destination</Button>
+                <Button x:Name="btnShowMap" Click="btnShowMap_Click" Margin="10">Show Map</Button> 
+            </StackPanel>
+            
             <ScrollViewer>
                 <ListView x:Name="lvDestinations" ItemsSource="{Binding Itinerary}" RightTapped="lvDestinations_RightTapped">
                     <ListView.ItemTemplate>

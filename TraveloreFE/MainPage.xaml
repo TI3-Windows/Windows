@@ -43,8 +43,7 @@
                 <NavigationViewItem Content="Travellist" Icon="Home" Tapped="NavigationViewHome_Tapped"/>
                 <NavigationViewItem Content="Categories" Icon="List" Tapped="NavigationViewCategories_Tapped"/>
                 <NavigationViewItem Content="Tasks" Icon="List" Tapped="NavigationViewTasks_Tapped"/>
-                <NavigationViewItem Content="Map" Icon="World" Tapped="NavigationViewMap_Tapped"/>
-                <NavigationViewItem Content="Destinations" Icon="List" Tapped="NavigationViewItinerary_Tapped"/>
+                <NavigationViewItem Content="Destinations" Icon="Map" Tapped="NavigationViewItinerary_Tapped"/>
             </NavigationView.MenuItems>
             <Frame x:Name="mainContent">
                 <!--<Frame.Background>

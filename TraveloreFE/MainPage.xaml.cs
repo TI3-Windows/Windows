@@ -66,12 +66,6 @@ namespace TraveloreFE
             HeaderPaneText.Text = "Itinerary";
         }
 
-        private void NavigationViewMap_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            mainContent.Navigate(typeof(MapRoute), Travellist);
-            HeaderPaneText.Text = "Map";
-        }
-
         private void NavigationViewHome_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
