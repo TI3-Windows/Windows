@@ -11,6 +11,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Services.Maps;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
@@ -72,6 +73,12 @@ namespace TraveloreFE.View
                         };
                         var gp = new Geopoint(new BasicGeoposition());
                         var res = await MapLocationFinder.FindLocationsAsync(nextLocation, gp);
+                        if (res.Locations.Count == 0)
+                        {
+                            MessageDialog dialog = new MessageDialog("No destination found for this address.");
+                            await dialog.ShowAsync();
+                            break;
+                        }
                         var location = res.Locations.First();
                         var endPoint = new Geopoint(new BasicGeoposition()
                         {
@@ -146,7 +153,16 @@ namespace TraveloreFE.View
                 routeView.OutlineColor = Colors.Black;
                 MCMain.Routes.Add(routeView);
             }
-            await MCMain.TrySetViewBoundsAsync(routeResult.Route.BoundingBox, null, MapAnimationKind.None);
+
+            if(routeResult.Route == null)
+            {
+                MessageDialog dialog = new MessageDialog("No route found to this destination.");
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                await MCMain.TrySetViewBoundsAsync(routeResult.Route.BoundingBox, null, MapAnimationKind.None);
+            }
         }
     }
 }
