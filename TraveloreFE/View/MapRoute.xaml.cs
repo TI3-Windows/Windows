@@ -60,6 +60,8 @@ namespace TraveloreFE.View
 
         private async void CalcRoute()
         {
+            MCMain.MapElements.Clear();
+            MCMain.Routes.Clear();
             if (Destination != null)
             {
                 var nextLocation = Destination.Street + " " + Destination.Nr + ", " + Destination.City;
@@ -128,8 +130,6 @@ namespace TraveloreFE.View
             if (destination != null)
             {
                 Destination = destination;
-                MCMain.MapElements.Clear();
-                MCMain.Routes.Clear();
                 CalcRoute();
             }
         }
