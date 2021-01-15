@@ -84,7 +84,7 @@ namespace TraveloreFE.View
             await cvm.UpdateItem(itemName);
         }
 
-        private async void btnAddItem_Click(object sender, RoutedEventArgs e)
+        private async void BtnAddItem_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog md;
             if (cvm.Categories.Count != 0)
@@ -159,7 +159,7 @@ namespace TraveloreFE.View
             }
         }
 
-        private async void btnAddCat_Click(object sender, RoutedEventArgs e)
+        private async void BtnAddCat_Click(object sender, RoutedEventArgs e)
         {
             var name = NaamCat.Text;
             if (NaamCat.Text.Length != 0)
@@ -213,12 +213,5 @@ namespace TraveloreFE.View
                 lastSelectedType = "Category";
             }
         }
-        //private async void Update_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (selectedCategory != null)
-        //    {
-        //        await cvm.UpdateSelectedCategory(selectedCategory.Id);
-        //    }
-        //}
     }
 }

@@ -4,9 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush ImageSource="Assets/TravellistBG.jpg"/>
+    </Page.Background>
     <ScrollViewer>
         <StackPanel>
             <TextBlock x:Name="ItemsDone" HorizontalAlignment="Center" FontSize="20"/>
@@ -20,42 +21,34 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="TitleCategory" Text="Add a new Category" FontSize="20" Grid.Row="0" Grid.ColumnSpan="4"/>
                 <TextBox x:Name="NaamCat" Header="Name" TextWrapping="Wrap"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-                <Button x:Name="btnAddCat" Content="Add Category" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnAddCat_Click" Grid.Row="1" Grid.Column="1"/>
+                <Button x:Name="BtnAddCat" Content="Add Category" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="BtnAddCat_Click" Grid.Row="1" Grid.Column="1"/>
                 <TextBlock x:Name="TitleItem" Text="Add a new item" FontSize="20" Grid.Row="2" Grid.ColumnSpan="4"/>
                 <TextBox x:Name="Naam" Header="Name" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
                 <TextBox x:Name="Amount" Header="Amount" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"/>
                 <ComboBox x:Name="cmbCategory" ItemsSource="{Binding CategoryNames}" Header="Category" Grid.Row="3" Grid.Column="2" />
-                <Button x:Name="btnAddItem" Content="Add Item" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnAddItem_Click" Grid.Row="3" Grid.Column="3"/>
-                <ListView x:Name="LvCat" ItemsSource="{Binding Categories}" Grid.Row="4" Grid.Column="0" RightTapped="LvCat_RightTapped">
+                <Button x:Name="BtnAddItem" Content="Add Item" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="BtnAddItem_Click" Grid.Row="3" Grid.Column="3"/>
+                <ListView x:Name="LvCat" ItemsSource="{Binding Categories}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"  RightTapped="LvCat_RightTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="5" Padding="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="0.5*"/>
-                                        <RowDefinition Height="*" MaxHeight="400"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock FontSize="50" Grid.Row="0" Text="{Binding Name}"/>
-                                </Grid>
-                                <!--<TextBlock Text="{Binding DoneCat}"/>-->
-                                <ListView x:Name="LvItem" ItemsSource="{Binding Items}">
+                            <Grid ColumnSpacing="5" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock FontSize="50" Text="{Binding Name}" Grid.Row="0"/>
+                                <ListView x:Name="LvItem" ItemsSource="{Binding Items}" Grid.Row="1">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid ColumnSpacing="10" RowSpacing="5">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="Auto" MinWidth="200"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding DoneItem}" Click="CheckBox_Click" Content="{Binding Name}"/>
@@ -64,7 +57,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                            </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Resources>

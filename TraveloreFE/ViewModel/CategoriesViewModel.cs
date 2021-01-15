@@ -112,6 +112,7 @@ namespace TraveloreFE.ViewModel
             {
                 Category newCat = JsonConvert.DeserializeObject<Category>(res.Content.ToString());
                 Categories.Add(newCat);
+                Travellist.Categories.Add(newCat);
                 CategoryNames.Add(newCat.Name);
             }
         }
