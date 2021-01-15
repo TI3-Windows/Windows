@@ -37,6 +37,13 @@ namespace Travelore.Data.Repositories
             _categories.Remove(cat);
         }
 
+        public void DeleteItem(Category cat, Item item)
+        {
+            Category c = _categories.SingleOrDefault(ca => ca.Id == cat.Id);
+            c.Items.Remove(item);
+            _items.Remove(item);
+        }
+
         public Category GetbyCategoryId(int id)
         {
             return _categories.Include(c => c.Items).SingleOrDefault(c => c.Id == id);

@@ -33,7 +33,7 @@
                 <TextBox x:Name="Amount" Header="Amount" TextWrapping="Wrap"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"/>
                 <ComboBox x:Name="cmbCategory" ItemsSource="{Binding CategoryNames}" Header="Category" Grid.Row="3" Grid.Column="2" />
                 <Button x:Name="btnAddItem" Content="Add Item" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnAddItem_Click" Grid.Row="3" Grid.Column="3"/>
-                <ListView x:Name="lvCat" ItemsSource="{Binding Categories}" Grid.Row="4" Grid.Column="0" SelectionMode="None">
+                <ListView x:Name="LvCat" ItemsSource="{Binding Categories}" Grid.Row="4" Grid.Column="0" RightTapped="LvCat_RightTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -50,7 +50,7 @@
                                     <TextBlock FontSize="50" Grid.Row="0" Text="{Binding Name}"/>
                                 </Grid>
                                 <!--<TextBlock Text="{Binding DoneCat}"/>-->
-                                <ListView ItemsSource="{Binding Items}" SelectionMode="None">
+                                <ListView x:Name="LvItem" ItemsSource="{Binding Items}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid ColumnSpacing="10" RowSpacing="5">
@@ -67,6 +67,17 @@
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.Resources>
+                        <MenuFlyout x:Name="CategoryMenuFlyout">
+                            <MenuFlyout.Items>
+                                <MenuFlyoutItem x:Name="Remove" Text="Remove" Click="Remove_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <SymbolIcon Symbol="Remove"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout.Items>
+                        </MenuFlyout>
+                    </ListView.Resources>
                 </ListView>
             </Grid>
         </StackPanel>

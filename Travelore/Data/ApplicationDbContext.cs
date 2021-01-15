@@ -68,7 +68,8 @@ namespace Travelore.Data
             builder.Entity<Category>()
                 .HasMany(c => c.Items)
                 .WithOne()
-                .HasForeignKey("CategoryId");
+                .HasForeignKey("CategoryId")
+                .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Category>()
                 .Property(c => c.Name)
                 .IsRequired()

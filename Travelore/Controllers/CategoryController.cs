@@ -74,6 +74,25 @@ namespace Travelore.Controllers
             return CreatedAtAction(nameof(GetCategoryById), new { id = cat.Id }, cat);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCategory(int id)
+        {
+            Category catDel = _categoryRepo.GetbyCategoryId(id);
+            _categoryRepo.Delete(catDel);
+            _categoryRepo.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("DeleteItem/{id}")]
+        public IActionResult DeleteItem(int id)
+        {
+            Item itemDel = _categoryRepo.GetByItemId(id);
+            Category cat = _categoryRepo.GetCategoryByItem(itemDel);
+            _categoryRepo.DeleteItem(cat, itemDel);
+            _categoryRepo.SaveChanges();
+            return NoContent();
+        }
+
         [HttpPut("UpdateItem/{id}")]
         public IActionResult UpdateItem(int id)
         {

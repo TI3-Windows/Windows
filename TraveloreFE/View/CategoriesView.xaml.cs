@@ -27,6 +27,8 @@ namespace TraveloreFE.View
     public sealed partial class CategoriesView : Page
     {
         public Item selectedItem;
+        public Category selectedCategory;
+        public string lastSelectedType;
         public CategoriesViewModel cvm;
         public Travellist Travellist { get; set; }
         public CategoriesView()
@@ -44,7 +46,7 @@ namespace TraveloreFE.View
             foreach (Category cat in cvm.Categories)
             {
                 aantalItems += cat.Items.Count;
-                foreach(Item i in cat.Items)
+                foreach (Item i in cat.Items)
                 {
                     if (i.DoneItem)
                     {
@@ -59,14 +61,14 @@ namespace TraveloreFE.View
             {
                 percentageDone = progressbar.Value / progressbar.Maximum * 100;
             }
-            
+
             ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
         }
 
         private async void CheckBox_Click(object sender, RoutedEventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
-            if(cb.IsChecked == false)
+            if (cb.IsChecked == false)
             {
                 progressbar.Value--;
                 var percentageDone = progressbar.Value / progressbar.Maximum * 100;
@@ -84,56 +86,75 @@ namespace TraveloreFE.View
 
         private async void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            var name = Naam.Text;
-            var amount = 1;
-            try
+            MessageDialog md;
+            if (cvm.Categories.Count != 0)
             {
-                amount = Convert.ToInt32(Amount.Text);
-            }
-            catch (FormatException)
-            {
-                MessageDialog md = new MessageDialog("Enter a valid number");
-                await md.ShowAsync();
-            }
-            var categoryName = cmbCategory.SelectedItem.ToString();
-            if (Naam.Text.Length != 0)
-            {
-                if (Amount.Text.Length != 0)
+                var name = Naam.Text;
+                var amount = 1;
+                var categoryName = "";
+                try
                 {
-                    if (amount != 0)
+                    amount = Convert.ToInt32(Amount.Text);
+                }
+                catch (FormatException)
+                {
+                    md = new MessageDialog("Enter a valid number");
+                    await md.ShowAsync();
+                }
+
+                if(cmbCategory.SelectedItem != null)
+                {
+                    categoryName = cmbCategory.SelectedItem.ToString();
+                }
+                else
+                {
+                    md = new MessageDialog("You have to select a category!");
+                }
+
+                if (Naam.Text.Length != 0)
+                {
+                    if (Amount.Text.Length != 0)
                     {
-                        if (cmbCategory.SelectedItem != null)
+                        if (amount > 0)
                         {
-                            await cvm.AddNewItem(name, amount, categoryName);
-                            Naam.Text = "";
-                            Amount.Text = "";
-                            lvCat.ItemsSource = null;
-                            lvCat.ItemsSource = cvm.Categories;
-                            progressbar.Maximum++;
-                            var percentageDone = progressbar.Value / progressbar.Maximum * 100;
-                            ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
+                            if (cmbCategory.SelectedItem != null)
+                            {
+                                await cvm.AddNewItem(name, amount, categoryName);
+                                Naam.Text = "";
+                                Amount.Text = "";
+                                LvCat.ItemsSource = null;
+                                LvCat.ItemsSource = cvm.Categories;
+                                progressbar.Maximum++;
+                                var percentageDone = progressbar.Value / progressbar.Maximum * 100;
+                                ItemsDone.Text = Math.Round(percentageDone).ToString() + "%";
+                            }
+                            else
+                            {
+                                md = new MessageDialog("Please select a category.");
+                                await md.ShowAsync();
+                            }
                         }
                         else
                         {
-                            MessageDialog md = new MessageDialog("Please select a category.");
+                            md = new MessageDialog("Amount can't be less than or equal to 0!");
                             await md.ShowAsync();
                         }
                     }
                     else
                     {
-                        MessageDialog md = new MessageDialog("Amount can't be 0!");
+                        md = new MessageDialog("Amount can't be empty!");
                         await md.ShowAsync();
                     }
                 }
                 else
                 {
-                    MessageDialog md = new MessageDialog("Amount can't be empty!");
+                    md = new MessageDialog("Name can't be empty!");
                     await md.ShowAsync();
                 }
             }
             else
             {
-                MessageDialog md = new MessageDialog("Name can't be empty!");
+                md = new MessageDialog("You can't add an item without a category!");
                 await md.ShowAsync();
             }
         }
@@ -153,12 +174,44 @@ namespace TraveloreFE.View
             }
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private async void Remove_Click(object sender, RoutedEventArgs e)
         {
+            if(lastSelectedType != null && !lastSelectedType.Equals(""))
+            {
+                if (lastSelectedType.Equals("Category") && selectedCategory != null)
+                {
+                    await cvm.RemoveCat(selectedCategory);
+                }
+                else
+                {
+                    if(selectedItem != null)
+                    {
+                        await cvm.RemoveItem(selectedItem);
+                        LvCat.ItemsSource = null;
+                        LvCat.ItemsSource = cvm.Categories;
+                    }
+                }
+            }
 
         }
 
-
+        private void LvCat_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            CategoryMenuFlyout.ShowAt(listView, e.GetPosition(listView));
+            var a = ((FrameworkElement)e.OriginalSource).DataContext;
+            if (a.GetType().Name.Equals("Item"))
+            {
+                selectedItem = (Item)a;
+                lastSelectedType = "Item";
+            }
+            else
+            {
+                selectedCategory = (Category)a;
+                lastSelectedType = "Category";
+            }
+        }
         //private async void Update_Click(object sender, RoutedEventArgs e)
         //{
         //    if (selectedCategory != null)

@@ -111,5 +111,47 @@ namespace TraveloreFE.ViewModel
                 CategoryNames.Add(newCat.Name);
             }
         }
+
+        public async System.Threading.Tasks.Task RemoveCat(Category cat)
+        {
+            var catIdJson = JsonConvert.SerializeObject(cat.Id);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Category/{cat.Id}";
+            var res = await httpClient.DeleteAsync(new Uri(url));
+            if (res.IsSuccessStatusCode)
+            {
+                var deletedCat = Categories.SingleOrDefault((t) => t.Id == cat.Id);
+                if (deletedCat != null)
+                {
+                    Categories.Remove(deletedCat);
+                    Travellist.Categories.Remove(deletedCat);
+                }
+            }
+        }
+
+        public async System.Threading.Tasks.Task RemoveItem(Item item)
+        {
+            var itemIdJson = JsonConvert.SerializeObject(item.Id);
+            HttpClient httpClient = new HttpClient();
+            var url = $"http://localhost:5001/api/Category/DeleteItem/{item.Id}";
+            var res = await httpClient.DeleteAsync(new Uri(url));
+            if (res.IsSuccessStatusCode)
+            {
+                Category cat = null;
+                foreach (Category c in Categories)
+                {
+                    if (c.Items.Contains(item))
+                    {
+                        cat = c;
+                    }
+                }
+                if (cat != null)
+                {
+                    cat.Items.Remove(item);
+                    Category tCat = Travellist.Categories.SingleOrDefault(c => c.Id == cat.Id);
+                    tCat.Items.Remove(item);
+                }
+            }
+        }
     }
 }
