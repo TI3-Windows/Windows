@@ -37,6 +37,8 @@ namespace TraveloreFE.ViewModel
             {
                 foreach (var c in categoryList)
                 {
+                    List<Item> orderdItems = c.Items.OrderBy(i => i.Name).ToList();
+                    c.Items = orderdItems;
                     Categories.Add(c);
                     CategoryNames.Add(c.Name);
                 }
@@ -94,6 +96,8 @@ namespace TraveloreFE.ViewModel
             {
                 Category cat = Categories.Where(c => c.Id == categoryId).FirstOrDefault();
                 cat.Items.Add(JsonConvert.DeserializeObject<Item>(res.Content.ToString()));
+                List<Item> orderdItems = cat.Items.OrderBy(i => i.Name).ToList();
+                cat.Items = orderdItems;
             }
         }
 

@@ -206,8 +206,9 @@ namespace TraveloreFE.View
                 selectedItem = (Item)a;
                 lastSelectedType = "Item";
             }
-            else
+            else if(a.GetType().Name.Equals("Category"))
             {
+                
                 selectedCategory = (Category)a;
                 lastSelectedType = "Category";
             }
