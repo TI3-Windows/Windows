@@ -26,7 +26,7 @@
             </StackPanel>
             
             <ScrollViewer>
-                <ListView x:Name="lvDestinations" ItemsSource="{Binding Itinerary}" RightTapped="lvDestinations_RightTapped">
+                <ListView x:Name="lvDestinations" ItemsSource="{Binding Itinerary}" RightTapped="lvDestinations_RightTapped" Width="800">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Travellist">
                             <Grid>
@@ -35,7 +35,7 @@
                                     <TextBlock Text="{Binding Name}" FontSize="32" FontWeight="Bold" Height="50"/>
                                     <TextBlock Text="{Binding VisitTime}" FontSize="16" Height="32"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Width="123" Text="{Binding Street}" FontSize="16" Height="32"/>
+                                        <TextBlock Width="300" Text="{Binding Street}" FontSize="16" Height="32"/>
                                         <TextBlock Width="123" Text="{Binding Nr}" FontSize="16"/>
                                         <TextBlock Width="123" Text="{Binding City}" FontSize="16"/>
                                     </StackPanel>
