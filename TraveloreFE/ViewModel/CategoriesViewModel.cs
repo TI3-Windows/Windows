@@ -15,7 +15,7 @@ namespace TraveloreFE.ViewModel
     public class CategoriesViewModel
     {
         public ObservableCollection<Category> Categories { get; set; }
-        public ObservableCollection<String> CategoryNames { get; set; }
+        public ObservableCollection<string> CategoryNames { get; set; }
         public Travellist Travellist { get; set; }
         public CategoriesViewModel(Travellist tl)
         {
@@ -129,6 +129,7 @@ namespace TraveloreFE.ViewModel
                 if (deletedCat != null)
                 {
                     Categories.Remove(deletedCat);
+                    CategoryNames.Remove(deletedCat.Name);
                     Travellist.Categories.Remove(deletedCat);
                 }
             }
