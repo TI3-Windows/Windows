@@ -8,6 +8,7 @@ using System.Windows.Input;
 using TraveloreFE.Model;
 using TraveloreFE.ViewModel.Commands;
 using Windows.Web.Http;
+using Windows.Web.Http.Headers;
 using HttpClient = Windows.Web.Http.HttpClient;
 
 namespace TraveloreFE.ViewModel
@@ -30,13 +31,21 @@ namespace TraveloreFE.ViewModel
 
         private async void loadTravellists()
         {
-            HttpClient httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Travellist"));
-            var travelLists = JsonConvert.DeserializeObject<IList<Travellist>>(json);
             //var travelLists = User.Travellists;
-            foreach (var tl in travelLists)
+            try
             {
-                Travellists.Add(tl);
+                HttpClient httpClient = new HttpClient();
+                var token = Globals.LoggedInUser.access_token;
+                httpClient.DefaultRequestHeaders.Authorization = new HttpCredentialsHeaderValue("Bearer", token);
+                var response = await httpClient.GetStringAsync(new Uri("http://localhost:5001/api/Travellist/User"));
+                var travelLists = JsonConvert.DeserializeObject<IList<Travellist>>(response);
+                foreach (var tl in travelLists)
+                {
+                    Travellists.Add(tl);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 

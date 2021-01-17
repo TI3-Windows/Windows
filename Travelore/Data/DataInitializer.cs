@@ -26,7 +26,7 @@ namespace Travelore.Data
             _context.Database.EnsureDeleted();
             if (_context.Database.EnsureCreated())
             {
-                Customer customer1 = new Customer { Email = "test@test.be", FirstName = "Robbe", LastName = "Van Looy" };
+                Customer customer1 = new Customer { Email = "customer1@hogent.be", FirstName = "Robbe", LastName = "Van Looy" };
                 _context.Customers.Add(customer1);
                 await CreateUser(customer1.Email, "P@ssword1");
                 Customer customer2 = new Customer { Email = "customer2@hogent.be", FirstName = "Flor", LastName = "Jacob" };

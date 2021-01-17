@@ -12,8 +12,6 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Background="White" Padding="20" BorderBrush="Black" BorderThickness="2">
 
             <TextBlock Text="Login" HorizontalAlignment="Center" FontSize="26"/>
-            <TextBlock Text="Username : test@test.be" HorizontalAlignment="Center" FontSize="8"/>
-            <TextBlock Text="Password : P@ssword1" HorizontalAlignment="Center" FontSize="8"/>
 
             <TextBox x:Name="usernamebox" PlaceholderText="Enter Email"/>
             <TextBlock x:Name="usernameStatusText" HorizontalAlignment="Center" Foreground="Red"/>

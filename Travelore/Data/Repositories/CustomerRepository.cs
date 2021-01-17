@@ -26,6 +26,8 @@ namespace Travelore.Data.Repositories
                 .Include(c => c.TravelLists)
                 .ThenInclude(c => c.Categories)
                 .ThenInclude(c => c.Items)
+                .Include(c => c.TravelLists)
+                .ThenInclude(t => t.Itinerary)
                 .SingleOrDefault(c => c.Email == email);
         }
 
