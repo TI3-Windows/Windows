@@ -65,6 +65,7 @@ namespace TraveloreFE.ViewModel
                 if(deletedTask != null)
                 {
                     Tasks.Remove(deletedTask);
+                    Travellist.Tasks.Remove(deletedTask);
                 }
             }
         }
