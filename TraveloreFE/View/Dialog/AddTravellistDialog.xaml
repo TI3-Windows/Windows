@@ -1,0 +1,30 @@
+﻿<ContentDialog
+    x:Class="TraveloreFE.View.Dialog.AddTravellistDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TraveloreFE.View.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Add Travellist"
+    PrimaryButtonText="Add"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Padding="10">
+            <TextBlock Text="Country:" Width="118"/>
+            <TextBox x:Name="CountryTextBox" PlaceholderText="Country" Width="226" TabIndex="0"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Padding="10">
+            <TextBlock Text="Date leave:" Width="118"/>
+            <CalendarDatePicker x:Name="DatePickerLeave" PlaceholderText="Pick the date you leave" TabIndex="5"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Padding="10">
+            <TextBlock Text="Date back:" Width="118"/>
+            <CalendarDatePicker x:Name="DatePickerBack" PlaceholderText="Pick the date you come back" TabIndex="5"/>
+        </StackPanel>
+    </StackPanel>
+</ContentDialog>

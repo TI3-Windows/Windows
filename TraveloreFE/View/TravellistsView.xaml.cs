@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TraveloreFE.Model;
+using TraveloreFE.View.Dialog;
 using TraveloreFE.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -54,10 +55,14 @@ namespace TraveloreFE.View
 
         private async void addTravellist_Click(object sender, RoutedEventArgs e)
         {
+
             var travellist = TravellistName.Text;
             if (TravellistName.Text.Length != 0)
             {
-                await tvm.AddNewTravellist(travellist);
+                Travellist tl = new Travellist(travellist);
+                AddTravellistDialog dialog = new AddTravellistDialog(tvm, tl);
+                await dialog.ShowAsync();
+                //await tvm.AddNewTravellist(travellist);
                 TravellistName.Text = "";
                 gvTravellists.ItemsSource = null;
                 gvTravellists.ItemsSource = tvm.Travellists;
@@ -74,7 +79,7 @@ namespace TraveloreFE.View
             GridView listView = (GridView)sender;
             travellistFlyouts.ShowAt(listView, e.GetPosition(listView));
             var a = ((FrameworkElement)e.OriginalSource).DataContext;
-            selectedTravellist = (Travellist)a;
+            selectedTravellist = (Travellist)a ;
         }
 
         private async void Remove_Click(object sender, RoutedEventArgs e)

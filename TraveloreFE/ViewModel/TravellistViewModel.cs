@@ -40,10 +40,10 @@ namespace TraveloreFE.ViewModel
             }
         }
 
-        public async System.Threading.Tasks.Task AddNewTravellist(string name/*, string country, string street, string houseNr, DateTime? dateLeave, DateTime? dateBack*/)
+        public async System.Threading.Tasks.Task AddNewTravellist(Travellist tl/*, string country, string street, string houseNr, DateTime? dateLeave, DateTime? dateBack*/)
         {
             //var travellist = new Travellist() { Name = name, Country = country, Street = street, HouseNr = houseNr, DateLeave = dateLeave, DateBack = dateBack };
-            var test = new Travellist() { Name = name, Country = "country", Street = "street", HouseNr = "nr", DateLeave = DateTime.Now, DateBack = DateTime.Now };
+            var test = new Travellist() { Name = tl.Name, Country = tl.Country, Street = "street", HouseNr = "nr", DateLeave = tl.DateLeave, DateBack = tl.DateBack };
             var travellistJson = JsonConvert.SerializeObject(test);
 
             HttpClient httpClient = new HttpClient();

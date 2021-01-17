@@ -104,5 +104,14 @@ namespace TraveloreFE.Model
             Itinerary = destinations;
 
         }
+
+        public Travellist(String name)
+        {
+            Name = name;
+        }
+        public Travellist()
+        {
+
+        }
     }
 }

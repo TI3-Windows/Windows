@@ -31,16 +31,20 @@ namespace TraveloreFE.ViewModel
         private void loadTasks()
         {
             var taskList = Travellist.Tasks;
-            foreach(var t in taskList)
+            if (taskList != null)
             {
-                Tasks.Add(t);
+                foreach (var t in taskList)
+                {
+                    Tasks.Add(t);
+                }
             }
+
         }
 
         // Add A Task WITH Parameters
         public async System.Threading.Tasks.Task AddNewTask(string description)
         {
-            var task = new Task() { Description = description , DoneTask = false};
+            var task = new Task() { Description = description, DoneTask = false };
             var taskJson = JsonConvert.SerializeObject(task);
 
             HttpClient httpClient = new HttpClient();
@@ -59,10 +63,10 @@ namespace TraveloreFE.ViewModel
             HttpClient httpClient = new HttpClient();
             var url = $"http://localhost:5001/api/Task/{id}";
             var res = await httpClient.DeleteAsync(new Uri(url));
-            if(res.IsSuccessStatusCode)
+            if (res.IsSuccessStatusCode)
             {
                 var deletedTask = Tasks.SingleOrDefault((t) => t.Id == id);
-                if(deletedTask != null)
+                if (deletedTask != null)
                 {
                     Tasks.Remove(deletedTask);
                 }
@@ -74,8 +78,8 @@ namespace TraveloreFE.ViewModel
             var taskIdJson = JsonConvert.SerializeObject(id);
             HttpClient httpClient = new HttpClient();
             var url = $"http://localhost:5001/api/Task/{id}";
-            var res = await httpClient.PutAsync(new Uri(url),new HttpStringContent(taskIdJson, Windows.Storage.Streams.UnicodeEncoding.Utf8,"application/json"));
-            if(res.IsSuccessStatusCode)
+            var res = await httpClient.PutAsync(new Uri(url), new HttpStringContent(taskIdJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            if (res.IsSuccessStatusCode)
             {
                 Task task = Tasks.FirstOrDefault(t => t.Id == id);
                 task.DoneTask = !task.DoneTask;

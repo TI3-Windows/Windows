@@ -146,6 +146,9 @@
     <Compile Include="View\Dialog\AddDestinationDialog.xaml.cs">
       <DependentUpon>AddDestinationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\AddTravellistDialog.xaml.cs">
+      <DependentUpon>AddTravellistDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\UpdateDestinationDialog.xaml.cs">
       <DependentUpon>UpdateDestinationDialog.xaml</DependentUpon>
     </Compile>
@@ -248,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\AddDestinationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\AddTravellistDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
